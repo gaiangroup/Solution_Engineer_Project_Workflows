@@ -1,0 +1,240 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:camunda="http://camunda.org/schema/1.0/bpmn" xmlns:bioc="http://bpmn.io/schema/bpmn/biocolor/1.0" xmlns:color="http://www.omg.org/spec/BPMN/non-normative/color/1.0" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:modeler="http://camunda.org/schema/modeler/1.0" id="Definitions_0811via" targetNamespace="http://bpmn.io/schema/bpmn" modeler:executionPlatform="Camunda Platform" modeler:executionPlatformVersion="7.21.0">
+  <bpmn:process id="GaianWorkflows0198e0e3-18b0-7c30-99b7-33b93c31e1ec" name="Suryaghar_flink" isExecutable="true">
+    <bpmn:extensionElements>
+      <camunda:executionListener event="start" name="FlinkPayload" type="{&#34;variableType&#34;:&#34;GLOBAL&#34;,&#34;dataType&#34;:&#34;OBJECT&#34;}" value="&#34;&#34;">
+        <camunda:script scriptFormat="groovy">
+            if (!execution.hasVariable('FlinkPayload')) {
+                 execution.setVariable('FlinkPayload', "")
+            }</camunda:script>
+      </camunda:executionListener>
+      <camunda:executionListener event="start" name="flinkAPI" type="{&#34;variableType&#34;:&#34;GLOBAL&#34;,&#34;dataType&#34;:&#34;STRING&#34;}" value="&#34;&#34;">
+        <camunda:script scriptFormat="groovy">
+            if (!execution.hasVariable('flinkAPI')) {
+                 execution.setVariable('flinkAPI', "")
+            }</camunda:script>
+      </camunda:executionListener>
+    </bpmn:extensionElements>
+    <bpmn:startEvent id="StartEvent_1">
+      <bpmn:outgoing>Flow_1eio62b</bpmn:outgoing>
+    </bpmn:startEvent>
+    <bpmn:serviceTask id="Activity_1k1ra5f_6754173406b4840ca120f353" name="FLink API" camunda:asyncBefore="true" camunda:asyncAfter="true" camunda:type="external" camunda:topic="ApiOperationHandler">
+      <bpmn:extensionElements>
+        <camunda:inputOutput>
+          <camunda:inputParameter name="$_INPUTS_Activity_1k1ra5f_6754173406b4840ca120f353" type="string">{"interfacePath":"PI-ENTITY-INSTANCES APIS#children#POST /v2.0/schemas/{schemaID}/instances","interfaceType":"REST","activityID":"Activity_1k1ra5f_6754173406b4840ca120f353","communicationType":"SYNC","config_status":true,"componentId":"6754173406b4840ca120f353","productMasterConfigId":"6754173406b4840ca120f352","componentName":"PI-Entity-Instances-Service","handleError":false,"items":{"HTTP_METHOD":{"config_status":true,"type":"PROPERTY","value":"#HTTP-METHOD","sensitive":false,"items":null},"URL":{"config_status":true,"type":"GLOBALS","value":"#flinkAPI","sensitive":false,"items":null},"QUERY_PARAM":{"config_status":false},"HTTP_HEADERS":{"config_status":true,"type":"GROUP","value":"#HTTP-HEADERS#children","sensitive":false,"items":{"Authorization":{"type":"PROPERTY","value":"#Authorization","label":"Authorization","sensitive":false},"Accept":{"type":"PROPERTY","value":"#Accept","label":"Accept","sensitive":false},"Content-Type":{"type":"PROPERTY","value":"#Content-Type","label":"Content-Type","sensitive":false}}},"HTTP_PAYLOAD":{"config_status":true,"type":"GROUP","value":"#REQUEST-BODY#children#application/json#children","sensitive":false,"items":{"metaData":{"type":"PROPERTY","value":"#metaData","label":"metaData","sensitive":false},"data":{"type":"PROPERTY","value":"#data","label":"data","sensitive":false},"_$":{"type":"GLOBALS","value":"","label":"FlinkPayload","sensitive":false}}},"PATH_PARAMETERS":{"config_status":false}}}</camunda:inputParameter>
+          <camunda:inputParameter name="$_OUTPUTS_Activity_1k1ra5f_6754173406b4840ca120f353" type="string">{"configs":{"RESPONSE_BODY":"RESPONSE-BODY"},"outputs":{"flinkAPIResponse":{"activityId":"Activity_1k1ra5f_6754173406b4840ca120f353","property":"_$","parent":"200#children#application/json#children#_$"}}}</camunda:inputParameter>
+        </camunda:inputOutput>
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_1m2d3tr</bpmn:incoming>
+      <bpmn:outgoing>Flow_1xwtngs</bpmn:outgoing>
+    </bpmn:serviceTask>
+    <bpmn:scriptTask id="Activity_07flc83" name="Input" camunda:asyncBefore="true" scriptFormat="Javascript">
+      <bpmn:incoming>Flow_1eio62b</bpmn:incoming>
+      <bpmn:outgoing>Flow_1m2d3tr</bpmn:outgoing>
+      <bpmn:script>var sourceDomain = "ig.gov-cloud.ai";
+
+
+
+var flinkAPI = "https://ig.gov-cloud.ai/pi-ingestion-service-dbaas/v2.0/jobs";
+execution.setVariable("flinkAPI", flinkAPI);
+
+
+var payload = S("{}");
+var universes = S("[]");
+universes.append("6899dae3a368b333babe33f2");
+
+var uuid = java.util.UUID.randomUUID().toString();
+var name = uuid;
+
+var description = "Flink";
+var jobType = "ONE_TIME";
+
+var sinks = S("[]");
+sinks.append("TIDB");
+
+var fileType = "JSON";
+
+var parallelism = 4;
+var jarVersion = "13.1.1";
+
+var mappingConfig = S("{}");
+var mappings = S("{}");
+
+mappings.prop("manufacturer", "manufacturer");
+mappings.prop("model", "model");
+mappings.prop("phase", "phase");
+mappings.prop("input_max_dc_power_kw", "input_max_dc_power_kw");
+mappings.prop("input_max_dc_voltage", "input_max_dc_voltage");
+mappings.prop("input_startup_dc_voltage", "input_startup_dc_voltage");
+mappings.prop("input_mppt_voltage_range", "input_mppt_voltage_range");
+mappings.prop("input_mppt_trackers", "input_mppt_trackers");
+mappings.prop("input_strings_per_mppt", "input_strings_per_mppt");
+mappings.prop("input_max_dc_current", "input_max_dc_current");
+mappings.prop("input_max_short_circuit_current", "input_max_short_circuit_current");
+mappings.prop("output_rated_ac_power_kw", "output_rated_ac_power_kw");
+mappings.prop("output_max_active_power_kw", "output_max_active_power_kw");
+mappings.prop("output_nominal_voltage", "output_nominal_voltage");
+mappings.prop("output_grid_frequency_hz", "output_grid_frequency_hz");
+mappings.prop("output_rated_ac_current", "output_rated_ac_current");
+mappings.prop("output_max_ac_current", "output_max_ac_current");
+mappings.prop("output_power_factor", "output_power_factor");
+mappings.prop("output_thd", "output_thd");
+mappings.prop("output_dc_injection", "output_dc_injection");
+mappings.prop("efficiency_max", "efficiency_max");
+mappings.prop("efficiency_euro", "efficiency_euro");
+mappings.prop("efficiency_mppt", "efficiency_mppt");
+mappings.prop("protection_dc_reverse_polarity", "protection_dc_reverse_polarity");
+mappings.prop("protection_ac_short_circuit", "protection_ac_short_circuit");
+mappings.prop("protection_ac_overcurrent", "protection_ac_overcurrent");
+mappings.prop("protection_ac_overvoltage", "protection_ac_overvoltage");
+mappings.prop("protection_insulation_resistance", "protection_insulation_resistance");
+mappings.prop("protection_ground_fault", "protection_ground_fault");
+mappings.prop("protection_anti_islanding", "protection_anti_islanding");
+mappings.prop("protection_temperature", "protection_temperature");
+mappings.prop("protection_integrated_dc_switch", "protection_integrated_dc_switch");
+mappings.prop("protection_surge", "protection_surge");
+mappings.prop("features_zero_export", "features_zero_export");
+mappings.prop("features_vsg", "features_vsg");
+mappings.prop("features_monitoring", "features_monitoring");
+mappings.prop("features_anti_pid", "features_anti_pid");
+mappings.prop("features_display", "features_display");
+mappings.prop("features_communication", "features_communication");
+mappings.prop("features_remote_management", "features_remote_management");
+mappings.prop("physical_dimensions_mm", "physical_dimensions_mm");
+mappings.prop("physical_weight_kg", "physical_weight_kg");
+mappings.prop("physical_cooling", "physical_cooling");
+mappings.prop("physical_ingress_protection", "physical_ingress_protection");
+mappings.prop("physical_noise_db", "physical_noise_db");
+mappings.prop("physical_temperature_range", "physical_temperature_range");
+mappings.prop("physical_altitude_m", "physical_altitude_m");
+mappings.prop("physical_humidity", "physical_humidity");
+mappings.prop("certifications", "certifications");
+mappings.prop("warranty_years", "warranty_years");
+mappings.prop("notes", "notes");
+mappings.prop("customerid", "customerid");
+mappings.prop("location", "location");
+mappings.prop("ipaddress", "ipaddress");
+mappings.prop("vendorid", "vendorid");
+
+
+mappingConfig.prop("mappings", mappings);
+
+
+var destinationSchema = "689c797fe9c2d329569884d7";
+var fileUrl = "https://cdn.gov-cloud.ai/_ENC(3XAHo6H6/KkiA+nLwPExrG2UWLOUWv8zkaVReh7lx2kWPFE+lfK4u3Cpv20eJ79m)/MAC/9abbedff-82f8-440c-9f08-bf3b4762f584_$$_V1_inverters_150.json";
+var urlProperties = S("{}");
+
+mappingConfig.prop("destinationSchema", destinationSchema);
+mappingConfig.prop("fileUrl", fileUrl);
+mappingConfig.prop("urlProperties", urlProperties);
+
+
+var cep = false;
+var publish = false;
+var reactive = false;
+var thumbnail = S("[]");
+thumbnail.append("thumbnail1");
+thumbnail.append("thumbnail");
+
+
+var source = S("{}");
+source.prop("sourceType", "FILE");
+source.prop("file", "file");
+// function returnNull() {
+//   return null;
+// }
+
+// // Usage
+// source.prop("kafkaProps", S("null"));
+// source.prop("mqttProps", S("null"));
+
+
+var tags = S("{}");
+var BLUE = S("[]");
+BLUE.append("qwertyui");
+tags.prop("BLUE", BLUE);
+
+var persist = false;
+var timeZone = "Asia/Kolkata";
+var vaultPath = "path/vault";
+//////////////////////////////////
+
+
+
+
+payload.prop("universes", universes);
+payload.prop("name", name);
+payload.prop("description", description);
+payload.prop("jobType", jobType);
+payload.prop("fileType", fileType);
+payload.prop("sinks", sinks);
+
+
+payload.prop("parallelism", parallelism);
+payload.prop("jarVersion", jarVersion);
+payload.prop("mappingConfig", mappingConfig);
+payload.prop("cep", cep);
+
+
+
+payload.prop("cep", cep);
+payload.prop("publish", publish);
+payload.prop("reactive", reactive);
+payload.prop("thumbnail", thumbnail);
+payload.prop("source", source);
+
+payload.prop("tags", tags);
+payload.prop("persist", persist);
+payload.prop("timeZone", timeZone);
+payload.prop("vaultPath", vaultPath);
+
+
+
+execution.setVariable("FlinkPayload", payload);
+
+
+
+
+
+
+
+</bpmn:script>
+    </bpmn:scriptTask>
+    <bpmn:endEvent id="Event_1xchuji">
+      <bpmn:incoming>Flow_1xwtngs</bpmn:incoming>
+    </bpmn:endEvent>
+    <bpmn:sequenceFlow id="Flow_1xwtngs" sourceRef="Activity_1k1ra5f_6754173406b4840ca120f353" targetRef="Event_1xchuji" />
+    <bpmn:sequenceFlow id="Flow_1eio62b" sourceRef="StartEvent_1" targetRef="Activity_07flc83" />
+    <bpmn:sequenceFlow id="Flow_1m2d3tr" sourceRef="Activity_07flc83" targetRef="Activity_1k1ra5f_6754173406b4840ca120f353" />
+  </bpmn:process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_1">
+    <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="GaianWorkflows0198e0e3-18b0-7c30-99b7-33b93c31e1ec">
+      <bpmndi:BPMNShape id="_BPMNShape_StartEvent_2" bpmnElement="StartEvent_1" bioc:stroke="#75b1d2" color:border-color="#75b1d2">
+        <dc:Bounds x="-500" y="204" width="100" height="32" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_1k1ra5f_di" bpmnElement="Activity_1k1ra5f_6754173406b4840ca120f353" bioc:stroke="#75b1d2" color:border-color="#75b1d2">
+        <dc:Bounds x="-170" y="198" width="140" height="43" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_1xchuji_di" bpmnElement="Event_1xchuji">
+        <dc:Bounds x="40" y="204" width="100" height="32" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_07flc83_di" bpmnElement="Activity_07flc83" bioc:stroke="#75b1d2" color:border-color="#75b1d2">
+        <dc:Bounds x="-350" y="204" width="100" height="32" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="Flow_1xwtngs_di" bpmnElement="Flow_1xwtngs">
+        <di:waypoint x="-30" y="220" />
+        <di:waypoint x="40" y="220" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1eio62b_di" bpmnElement="Flow_1eio62b">
+        <di:waypoint x="-400" y="220" />
+        <di:waypoint x="-350" y="220" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1m2d3tr_di" bpmnElement="Flow_1m2d3tr">
+        <di:waypoint x="-250" y="218" />
+        <di:waypoint x="-170" y="218" />
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</bpmn:definitions>
