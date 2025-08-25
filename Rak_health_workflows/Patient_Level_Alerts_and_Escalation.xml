@@ -1,0 +1,983 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:camunda="http://camunda.org/schema/1.0/bpmn" xmlns:bioc="http://bpmn.io/schema/bpmn/biocolor/1.0" xmlns:color="http://www.omg.org/spec/BPMN/non-normative/color/1.0" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:modeler="http://camunda.org/schema/modeler/1.0" id="Definitions_0811via" targetNamespace="http://bpmn.io/schema/bpmn" modeler:executionPlatform="Camunda Platform" modeler:executionPlatformVersion="7.21.0">
+  <bpmn:process id="GaianWorkflows0198bc15-ca76-7535-960e-d1794934648a" name="Patient_Level_Alerts_and_Escalation" isExecutable="true">
+    <bpmn:extensionElements>
+      <camunda:executionListener event="start" name="piInstancePostDataUrl" type="{&#34;variableType&#34;:&#34;GLOBAL&#34;,&#34;dataType&#34;:&#34;STRING&#34;}" value="&#34;&#34;">
+        <camunda:script scriptFormat="groovy">
+            if (!execution.hasVariable('piInstancePostDataUrl')) {
+                 execution.setVariable('piInstancePostDataUrl', "")
+            }</camunda:script>
+      </camunda:executionListener>
+      <camunda:executionListener event="start" name="piInstanceGetwithFilterUrl" type="{&#34;variableType&#34;:&#34;GLOBAL&#34;,&#34;dataType&#34;:&#34;STRING&#34;}" value="&#34;&#34;">
+        <camunda:script scriptFormat="groovy">
+            if (!execution.hasVariable('piInstanceGetwithFilterUrl')) {
+                 execution.setVariable('piInstanceGetwithFilterUrl', "")
+            }</camunda:script>
+      </camunda:executionListener>
+      <camunda:executionListener event="start" name="piInstanceUpdateDataUrl" type="{&#34;variableType&#34;:&#34;GLOBAL&#34;,&#34;dataType&#34;:&#34;STRING&#34;}" value="&#34;&#34;">
+        <camunda:script scriptFormat="groovy">
+            if (!execution.hasVariable('piInstanceUpdateDataUrl')) {
+                 execution.setVariable('piInstanceUpdateDataUrl', "")
+            }</camunda:script>
+      </camunda:executionListener>
+      <camunda:executionListener event="start" name="labResultSchemaId" type="{&#34;variableType&#34;:&#34;GLOBAL&#34;,&#34;dataType&#34;:&#34;STRING&#34;}" value="&#34;689c8c6be9c2d329569884e9&#34;">
+        <camunda:script scriptFormat="groovy">
+            if (!execution.hasVariable('labResultSchemaId')) {
+                 execution.setVariable('labResultSchemaId', "689c8c6be9c2d329569884e9")
+            }</camunda:script>
+      </camunda:executionListener>
+      <camunda:executionListener event="start" name="earlyWarningScoreSchemaId" type="{&#34;variableType&#34;:&#34;GLOBAL&#34;,&#34;dataType&#34;:&#34;STRING&#34;}" value="&#34;689c8bbde9c2d329569884e8&#34;">
+        <camunda:script scriptFormat="groovy">
+            if (!execution.hasVariable('earlyWarningScoreSchemaId')) {
+                 execution.setVariable('earlyWarningScoreSchemaId', "689c8bbde9c2d329569884e8")
+            }</camunda:script>
+      </camunda:executionListener>
+      <camunda:executionListener event="start" name="clinicalAlertSchemaId" type="{&#34;variableType&#34;:&#34;GLOBAL&#34;,&#34;dataType&#34;:&#34;STRING&#34;}" value="&#34;689c8f66e9c2d329569884f0&#34;">
+        <camunda:script scriptFormat="groovy">
+            if (!execution.hasVariable('clinicalAlertSchemaId')) {
+                 execution.setVariable('clinicalAlertSchemaId', "689c8f66e9c2d329569884f0")
+            }</camunda:script>
+      </camunda:executionListener>
+      <camunda:executionListener event="start" name="taskTicketSchemaId" type="{&#34;variableType&#34;:&#34;GLOBAL&#34;,&#34;dataType&#34;:&#34;STRING&#34;}" value="&#34;689c9e43e9c2d329569884fc&#34;">
+        <camunda:script scriptFormat="groovy">
+            if (!execution.hasVariable('taskTicketSchemaId')) {
+                 execution.setVariable('taskTicketSchemaId', "689c9e43e9c2d329569884fc")
+            }</camunda:script>
+      </camunda:executionListener>
+      <camunda:executionListener event="start" name="escalationSchemaId" type="{&#34;variableType&#34;:&#34;GLOBAL&#34;,&#34;dataType&#34;:&#34;STRING&#34;}" value="&#34;689c9018e9c2d329569884f1&#34;">
+        <camunda:script scriptFormat="groovy">
+            if (!execution.hasVariable('escalationSchemaId')) {
+                 execution.setVariable('escalationSchemaId', "689c9018e9c2d329569884f1")
+            }</camunda:script>
+      </camunda:executionListener>
+      <camunda:executionListener event="start" name="careTeamSchemaId" type="{&#34;variableType&#34;:&#34;GLOBAL&#34;,&#34;dataType&#34;:&#34;STRING&#34;}" value="&#34;689c9f00e9c2d329569884fd&#34;">
+        <camunda:script scriptFormat="groovy">
+            if (!execution.hasVariable('careTeamSchemaId')) {
+                 execution.setVariable('careTeamSchemaId', "689c9f00e9c2d329569884fd")
+            }</camunda:script>
+      </camunda:executionListener>
+      <camunda:executionListener event="start" name="staffAssignmentSchemaId" type="{&#34;variableType&#34;:&#34;GLOBAL&#34;,&#34;dataType&#34;:&#34;STRING&#34;}" value="&#34;689c94f4e9c2d329569884f9&#34;">
+        <camunda:script scriptFormat="groovy">
+            if (!execution.hasVariable('staffAssignmentSchemaId')) {
+                 execution.setVariable('staffAssignmentSchemaId', "689c94f4e9c2d329569884f9")
+            }</camunda:script>
+      </camunda:executionListener>
+      <camunda:executionListener event="start" name="thresholdConfigSchemaId" type="{&#34;variableType&#34;:&#34;GLOBAL&#34;,&#34;dataType&#34;:&#34;STRING&#34;}" value="&#34;689c9318e9c2d329569884f6&#34;">
+        <camunda:script scriptFormat="groovy">
+            if (!execution.hasVariable('thresholdConfigSchemaId')) {
+                 execution.setVariable('thresholdConfigSchemaId', "689c9318e9c2d329569884f6")
+            }</camunda:script>
+      </camunda:executionListener>
+      <camunda:executionListener event="start" name="kpiObservationSchemaId" type="{&#34;variableType&#34;:&#34;GLOBAL&#34;,&#34;dataType&#34;:&#34;STRING&#34;}" value="&#34;KPI_Observation&#34;">
+        <camunda:script scriptFormat="groovy">
+            if (!execution.hasVariable('kpiObservationSchemaId')) {
+                 execution.setVariable('kpiObservationSchemaId', "KPI_Observation")
+            }</camunda:script>
+      </camunda:executionListener>
+      <camunda:executionListener event="start" name="labfilterPayload" type="{&#34;variableType&#34;:&#34;GLOBAL&#34;,&#34;dataType&#34;:&#34;OBJECT&#34;}" value="&#34;&#34;">
+        <camunda:script scriptFormat="groovy">
+            if (!execution.hasVariable('labfilterPayload')) {
+                 execution.setVariable('labfilterPayload', "")
+            }</camunda:script>
+      </camunda:executionListener>
+      <camunda:executionListener event="start" name="AgentPayload" type="{&#34;variableType&#34;:&#34;GLOBAL&#34;,&#34;dataType&#34;:&#34;OBJECT&#34;}" value="&#34;&#34;">
+        <camunda:script scriptFormat="groovy">
+            if (!execution.hasVariable('AgentPayload')) {
+                 execution.setVariable('AgentPayload', "")
+            }</camunda:script>
+      </camunda:executionListener>
+      <camunda:executionListener event="start" name="agentApiUrl" type="{&#34;variableType&#34;:&#34;GLOBAL&#34;,&#34;dataType&#34;:&#34;STRING&#34;}" value="&#34;&#34;">
+        <camunda:script scriptFormat="groovy">
+            if (!execution.hasVariable('agentApiUrl')) {
+                 execution.setVariable('agentApiUrl', "")
+            }</camunda:script>
+      </camunda:executionListener>
+      <camunda:executionListener event="start" name="earlyWarningIngestPayload" type="{&#34;variableType&#34;:&#34;GLOBAL&#34;,&#34;dataType&#34;:&#34;OBJECT&#34;}" value="&#34;&#34;">
+        <camunda:script scriptFormat="groovy">
+            if (!execution.hasVariable('earlyWarningIngestPayload')) {
+                 execution.setVariable('earlyWarningIngestPayload', "")
+            }</camunda:script>
+      </camunda:executionListener>
+      <camunda:executionListener event="start" name="bobExecuteApiUrl" type="{&#34;variableType&#34;:&#34;GLOBAL&#34;,&#34;dataType&#34;:&#34;STRING&#34;}" value="&#34;&#34;">
+        <camunda:script scriptFormat="groovy">
+            if (!execution.hasVariable('bobExecuteApiUrl')) {
+                 execution.setVariable('bobExecuteApiUrl', "")
+            }</camunda:script>
+      </camunda:executionListener>
+      <camunda:executionListener event="start" name="patient_id" type="{&#34;variableType&#34;:&#34;GLOBAL&#34;,&#34;dataType&#34;:&#34;STRING&#34;}" value="&#34;&#34;">
+        <camunda:script scriptFormat="groovy">
+            if (!execution.hasVariable('patient_id')) {
+                 execution.setVariable('patient_id', "")
+            }</camunda:script>
+      </camunda:executionListener>
+      <camunda:executionListener event="start" name="staff_Assignment_wf_id" type="{&#34;variableType&#34;:&#34;GLOBAL&#34;,&#34;dataType&#34;:&#34;STRING&#34;}" value="&#34;0198cb43-4b25-7f6a-9f6d-8dff9a0b531f&#34;">
+        <camunda:script scriptFormat="groovy">
+            if (!execution.hasVariable('staff_Assignment_wf_id')) {
+                 execution.setVariable('staff_Assignment_wf_id', "0198cb43-4b25-7f6a-9f6d-8dff9a0b531f")
+            }</camunda:script>
+      </camunda:executionListener>
+      <camunda:executionListener event="start" name="clinicalAlertIngestPayload" type="{&#34;variableType&#34;:&#34;GLOBAL&#34;,&#34;dataType&#34;:&#34;OBJECT&#34;}" value="&#34;&#34;">
+        <camunda:script scriptFormat="groovy">
+            if (!execution.hasVariable('clinicalAlertIngestPayload')) {
+                 execution.setVariable('clinicalAlertIngestPayload', "")
+            }</camunda:script>
+      </camunda:executionListener>
+      <camunda:executionListener event="start" name="ThresholdAuditIngestPayload" type="{&#34;variableType&#34;:&#34;GLOBAL&#34;,&#34;dataType&#34;:&#34;OBJECT&#34;}" value="&#34;&#34;">
+        <camunda:script scriptFormat="groovy">
+            if (!execution.hasVariable('ThresholdAuditIngestPayload')) {
+                 execution.setVariable('ThresholdAuditIngestPayload', "")
+            }</camunda:script>
+      </camunda:executionListener>
+      <camunda:executionListener event="start" name="ClinicalAuditIngestPayload" type="{&#34;variableType&#34;:&#34;GLOBAL&#34;,&#34;dataType&#34;:&#34;OBJECT&#34;}" value="&#34;&#34;">
+        <camunda:script scriptFormat="groovy">
+            if (!execution.hasVariable('ClinicalAuditIngestPayload')) {
+                 execution.setVariable('ClinicalAuditIngestPayload', "")
+            }</camunda:script>
+      </camunda:executionListener>
+      <camunda:executionListener event="start" name="EarlyWarningsAuditIngestPayload" type="{&#34;variableType&#34;:&#34;GLOBAL&#34;,&#34;dataType&#34;:&#34;OBJECT&#34;}" value="&#34;&#34;">
+        <camunda:script scriptFormat="groovy">
+            if (!execution.hasVariable('EarlyWarningsAuditIngestPayload')) {
+                 execution.setVariable('EarlyWarningsAuditIngestPayload', "")
+            }</camunda:script>
+      </camunda:executionListener>
+      <camunda:executionListener event="start" name="AuditLogEntrySchemaId" type="{&#34;variableType&#34;:&#34;GLOBAL&#34;,&#34;dataType&#34;:&#34;STRING&#34;}" value="&#34;68a719ad4e7cc90774f5db15&#34;">
+        <camunda:script scriptFormat="groovy">
+            if (!execution.hasVariable('AuditLogEntrySchemaId')) {
+                 execution.setVariable('AuditLogEntrySchemaId', "68a719ad4e7cc90774f5db15")
+            }</camunda:script>
+      </camunda:executionListener>
+      <camunda:executionListener event="start" name="token" type="{&#34;variableType&#34;:&#34;GLOBAL&#34;,&#34;dataType&#34;:&#34;STRING&#34;}" value="&#34;Bearer eyJhbGciOiJSUzI1NiIsInR5cCIgOiAiSldUIiwia2lkIiA6ICI3Ny1NUVdFRTNHZE5adGlsWU5IYmpsa2dVSkpaWUJWVmN1UmFZdHl5ejFjIn0.eyJleHAiOjE3MjYxODIzMzEsImlhdCI6MTcyNjE0NjMzMSwianRpIjoiOGVlZTU1MDctNGVlOC00NjE1LTg3OWUtNTVkMjViMjQ2MGFmIiwiaXNzIjoiaHR0cDovL2tleWNsb2FrLmtleWNsb2FrLnN2Yy5jbHVzdGVyLmxvY2FsOjgwODAvcmVhbG1zL21hc3RlciIsImF1ZCI6ImFjY291bnQiLCJzdWIiOiJmNzFmMzU5My1hNjdhLTQwYmMtYTExYS05YTQ0NjY4YjQxMGQiLCJ0eXAiOiJCZWFyZXIiLCJhenAiOiJIT0xBQ1JBQ1kiLCJzZXNzaW9uX3N0YXRlIjoiYmI1ZjJkMzktYTQ3ZC00MjI0LWFjZGMtZTdmNzQwNDc2OTgwIiwibmFtZSI6ImtzYW14cCBrc2FteHAiLCJnaXZlbl9uYW1lIjoia3NhbXhwIiwiZmFtaWx5X25hbWUiOiJrc2FteHAiLCJwcmVmZXJyZWRfdXNlcm5hbWUiOiJwYXNzd29yZF90ZW5hbnRfa3NhbXhwQG1vYml1c2R0YWFzLmFpIiwiZW1haWwiOiJwYXNzd29yZF90ZW5hbnRfa3NhbXhwQG1vYml1c2R0YWFzLmFpIiwiZW1haWxfdmVyaWZpZWQiOnRydWUsImFjciI6IjEiLCJhbGxvd2VkLW9yaWdpbnMiOlsiLyoiXSwicmVhbG1fYWNjZXNzIjp7InJvbGVzIjpbImRlZmF1bHQtcm9sZXMtbWFzdGVyIiwib2ZmbGluZV9hY2Nlc3MiLCJ1bWFfYXV0aG9yaXphdGlvbiJdfSwicmVzb3VyY2VfYWNjZXNzIjp7IkhPTEFDUkFDWSI6eyJyb2xlcyI6WyJIT0xBQ1JBQ1lfVVNFUiJdfSwiYWNjb3VudCI6eyJyb2xlcyI6WyJtYW5hZ2UtYWNjb3VudCIsIm1hbmFnZS1hY2NvdW50LWxpbmtzIiwidmlldy1wcm9maWxlIl19fSwic2NvcGUiOiJwcm9maWxlIGVtYWlsIiwic2lkIjoiYmI1ZjJkMzktYTQ3ZC00MjI0LWFjZGMtZTdmNzQwNDc2OTgwIiwidGVuYW50SWQiOiJmNzFmMzU5My1hNjdhLTQwYmMtYTExYS05YTQ0NjY4YjQxMGQiLCJyZXF1ZXN0ZXJUeXBlIjoiVEVOQU5UIn0=.FXeDyHBhlG9L4_NCeSyHEaNEBVmhFpfSBqlcbhHaPaoydhKcA0BfuyHgxg_32kQk6z5S9IQ7nVKS2ybtOvwo0WyLWwLQchSq7Noa7LooHIMzmeWMQb_bLKtbaOti59zwIdS8CkfGaXut7RUQKISQVWmbUGsVJQa2JkG6Ng_QN0y5hFVksMWPZiXVsofQkJXHXV1CQ3gabhhHKo3BqlJwzpsCKLDfg1-4PmSl1Wqbw03Ef2yolroj5i8FoeHukOQPkwCUHrrNw-ilIp917nqZa89YbCMtDjWyaj8pEH7GJR5vMZPE2WcJPn5dSA1IHVunfatEB1cDAitaFjVNWNnddQ&#34;">
+        <camunda:script scriptFormat="groovy">
+            if (!execution.hasVariable('token')) {
+                 execution.setVariable('token', "Bearer eyJhbGciOiJSUzI1NiIsInR5cCIgOiAiSldUIiwia2lkIiA6ICI3Ny1NUVdFRTNHZE5adGlsWU5IYmpsa2dVSkpaWUJWVmN1UmFZdHl5ejFjIn0.eyJleHAiOjE3MjYxODIzMzEsImlhdCI6MTcyNjE0NjMzMSwianRpIjoiOGVlZTU1MDctNGVlOC00NjE1LTg3OWUtNTVkMjViMjQ2MGFmIiwiaXNzIjoiaHR0cDovL2tleWNsb2FrLmtleWNsb2FrLnN2Yy5jbHVzdGVyLmxvY2FsOjgwODAvcmVhbG1zL21hc3RlciIsImF1ZCI6ImFjY291bnQiLCJzdWIiOiJmNzFmMzU5My1hNjdhLTQwYmMtYTExYS05YTQ0NjY4YjQxMGQiLCJ0eXAiOiJCZWFyZXIiLCJhenAiOiJIT0xBQ1JBQ1kiLCJzZXNzaW9uX3N0YXRlIjoiYmI1ZjJkMzktYTQ3ZC00MjI0LWFjZGMtZTdmNzQwNDc2OTgwIiwibmFtZSI6ImtzYW14cCBrc2FteHAiLCJnaXZlbl9uYW1lIjoia3NhbXhwIiwiZmFtaWx5X25hbWUiOiJrc2FteHAiLCJwcmVmZXJyZWRfdXNlcm5hbWUiOiJwYXNzd29yZF90ZW5hbnRfa3NhbXhwQG1vYml1c2R0YWFzLmFpIiwiZW1haWwiOiJwYXNzd29yZF90ZW5hbnRfa3NhbXhwQG1vYml1c2R0YWFzLmFpIiwiZW1haWxfdmVyaWZpZWQiOnRydWUsImFjciI6IjEiLCJhbGxvd2VkLW9yaWdpbnMiOlsiLyoiXSwicmVhbG1fYWNjZXNzIjp7InJvbGVzIjpbImRlZmF1bHQtcm9sZXMtbWFzdGVyIiwib2ZmbGluZV9hY2Nlc3MiLCJ1bWFfYXV0aG9yaXphdGlvbiJdfSwicmVzb3VyY2VfYWNjZXNzIjp7IkhPTEFDUkFDWSI6eyJyb2xlcyI6WyJIT0xBQ1JBQ1lfVVNFUiJdfSwiYWNjb3VudCI6eyJyb2xlcyI6WyJtYW5hZ2UtYWNjb3VudCIsIm1hbmFnZS1hY2NvdW50LWxpbmtzIiwidmlldy1wcm9maWxlIl19fSwic2NvcGUiOiJwcm9maWxlIGVtYWlsIiwic2lkIjoiYmI1ZjJkMzktYTQ3ZC00MjI0LWFjZGMtZTdmNzQwNDc2OTgwIiwidGVuYW50SWQiOiJmNzFmMzU5My1hNjdhLTQwYmMtYTExYS05YTQ0NjY4YjQxMGQiLCJyZXF1ZXN0ZXJUeXBlIjoiVEVOQU5UIn0=.FXeDyHBhlG9L4_NCeSyHEaNEBVmhFpfSBqlcbhHaPaoydhKcA0BfuyHgxg_32kQk6z5S9IQ7nVKS2ybtOvwo0WyLWwLQchSq7Noa7LooHIMzmeWMQb_bLKtbaOti59zwIdS8CkfGaXut7RUQKISQVWmbUGsVJQa2JkG6Ng_QN0y5hFVksMWPZiXVsofQkJXHXV1CQ3gabhhHKo3BqlJwzpsCKLDfg1-4PmSl1Wqbw03Ef2yolroj5i8FoeHukOQPkwCUHrrNw-ilIp917nqZa89YbCMtDjWyaj8pEH7GJR5vMZPE2WcJPn5dSA1IHVunfatEB1cDAitaFjVNWNnddQ")
+            }</camunda:script>
+      </camunda:executionListener>
+      <camunda:executionListener event="start" name="TriggerStaffAssignmentAuditIngestPayload" type="{&#34;variableType&#34;:&#34;GLOBAL&#34;,&#34;dataType&#34;:&#34;OBJECT&#34;}" value="&#34;&#34;">
+        <camunda:script scriptFormat="groovy">
+            if (!execution.hasVariable('TriggerStaffAssignmentAuditIngestPayload')) {
+                 execution.setVariable('TriggerStaffAssignmentAuditIngestPayload', "")
+            }</camunda:script>
+      </camunda:executionListener>
+      <camunda:executionListener event="start" name="triggerToken" type="{&#34;variableType&#34;:&#34;GLOBAL&#34;,&#34;dataType&#34;:&#34;STRING&#34;}" value="&#34;Bearer eyJhbGciOiJSUzI1NiIsInR5cCIgOiAiSldUIiwia2lkIiA6ICI3Ny1NUVdFRTNHZE5adGlsWU5IYmpsa2dVSkpaWUJWVmN1UmFZdHl5ejFjIn0.eyJleHAiOjE3NDExOTM4OTEsImlhdCI6MTc0MTE1Nzg5MSwianRpIjoiYzY0NTNkMjEtM2Y0Yy00ZWQ1LTgwNDYtODE2YjU3MDgzNDlmIiwiaXNzIjoiaHR0cDovL2tleWNsb2FrLXNlcnZpY2Uua2V5Y2xvYWsuc3ZjLmNsdXN0ZXIubG9jYWw6ODA4MC9yZWFsbXMvbWFzdGVyIiwiYXVkIjpbIkJPTFRaTUFOTl9CT1RfbW9iaXVzIiwiUEFTQ0FMX0lOVEVMTElHRU5DRV9tb2JpdXMiLCJNT05FVF9tb2JpdXMiLCJWSU5DSV9tb2JpdXMiLCJhY2NvdW50Il0sInN1YiI6IjJjZjc2ZTVmLTI2YWQtNGYyYy1iY2NjLWY0YmMxZTdiZmI2NCIsInR5cCI6IkJlYXJlciIsImF6cCI6IkhPTEFDUkFDWV9tb2JpdXMiLCJzaWQiOiIzYWIzYmFjMy0xMjAyLTQ4MWQtOTMwNi01ZjFjZWE2MzFlZGUiLCJhY3IiOiIxIiwiYWxsb3dlZC1vcmlnaW5zIjpbIi8qIl0sInJlYWxtX2FjY2VzcyI6eyJyb2xlcyI6WyJkZWZhdWx0LXJvbGVzLW1hc3RlciIsIkhDWV9URU5BTlRfQ1VTVE9NIiwib2ZmbGluZV9hY2Nlc3MiLCJ1bWFfYXV0aG9yaXphdGlvbiIsIkJPQl9URU5BTlRfQ1VTVE9NIiwiUElfVEVOQU5UX0NVU1RPTSIsIk1PTkVUX1RFTkFOVF9DVVNUT00iXX0sInJlc291cmNlX2FjY2VzcyI6eyJIT0xBQ1JBQ1lfbW9iaXVzIjp7InJvbGVzIjpbIkFHRU5UX1dSSVRFIiwiSE9MQUNSQUNZX0FQUFJPVkUiLCJIT0xBQ1JBQ1lfV1JJVEUiLCJIT0xBQ1JBQ1lfUkVBRCIsIkhPTEFDUkFDWV9FWEVDVVRFIiwiSE9MQUNSQUNZX1VTRVIiLCJBR0VOVF9FWEVDVVRFIiwiQUdFTlRfUkVBRCJdfSwiQk9MVFpNQU5OX0JPVF9tb2JpdXMiOnsicm9sZXMiOlsiQk9MVFpNQU5OX0JPVF9VU0VSIiwiQk9CX0VYRUNVVEUiLCJCT0JfQVBQUk9WRSIsIkJPQl9SRUFEIiwiQk9CX1dSSVRFIl19LCJQQVNDQUxfSU5URUxMSUdFTkNFX21vYml1cyI6eyJyb2xlcyI6WyJQQVNDQUxfSU5URUxMSUdFTkNFX1VTRVIiLCJJTkdFU1RJT05fUkVBRCIsIkNPSE9SVFNfQVBQUk9WRSIsIkNPSE9SVFNfV1JJVEUiLCJTQ0hFTUFfV1JJVEUiLCJJTkdFU1RJT05fQVBQUk9WRSIsIlVOSVZFUlNFX1JFQUQiLCJJTkdFU1RJT05fV1JJVEUiLCJJTkdFU1RJT05fRVhFQ1VURSIsIlNDSEVNQV9FWEVDVVRFIiwiU0NIRU1BX1JFQUQiLCJCSUdRVUVSWV9SRUFEIiwiQklHUVVFUllfV1JJVEUiLCJDT0hPUlRTX1JFQUQiLCJTQ0hFTUFfQVBQUk9WRSIsIlVOSVZFUlNFX0FQUFJPVkUiLCJCSUdRVUVSWV9FWEVDVVRFIiwiVU5JVkVSU0VfV1JJVEUiLCJDT0hPUlRTX0VYRUNVVEUiLCJCSUdRVUVSWV9BUFBST1ZFIiwiVU5JVkVSU0VfRVhFQ1VURSJdfSwiTU9ORVRfbW9iaXVzIjp7InJvbGVzIjpbIk1PTkVUX0FQUFJPVkUiLCJNT05FVF9VU0VSIiwiTU9ORVRfRVhFQ1VURSIsIk1PTkVUX1JFQUQiLCJNT05FVF9XUklURSJdfSwiVklOQ0lfbW9iaXVzIjp7InJvbGVzIjpbIlZJTkNJX1VTRVIiXX0sImFjY291bnQiOnsicm9sZXMiOlsibWFuYWdlLWFjY291bnQiLCJtYW5hZ2UtYWNjb3VudC1saW5rcyIsInZpZXctcHJvZmlsZSJdfX0sInNjb3BlIjoicHJvZmlsZSBlbWFpbCIsInJlcXVlc3RlclR5cGUiOiJURU5BTlQiLCJlbWFpbF92ZXJpZmllZCI6dHJ1ZSwibmFtZSI6IkFpZHRhYXMgQWlkdGFhcyIsInRlbmFudElkIjoiMmNmNzZlNWYtMjZhZC00ZjJjLWJjY2MtZjRiYzFlN2JmYjY0IiwicHJlZmVycmVkX3VzZXJuYW1lIjoicGFzc3dvcmRfdGVuYW50X2FpZHRhYXNAZ2FpYW5zb2x1dGlvbnMuY29tIiwiZ2l2ZW5fbmFtZSI6IkFpZHRhYXMiLCJmYW1pbHlfbmFtZSI6IkFpZHRhYXMiLCJlbWFpbCI6InBhc3N3b3JkX3RlbmFudF9haWR0YWFzQGdhaWFuc29sdXRpb25zLmNvbSJ9.fFXY8klez1waayovRJkaAUXWhlXiHNh3owyzoJSE12_aoLpdW5k8qDHfAFWyMLTPNFeIY_U_gdR7srD3nt_-xsL5ye-LSlyEuUIGojZ1h-mwT2GfvNJnjzx8MbFFv5hVfg3-I817tYpG-cE9R844Eg8VEGYxsixDUfMhRrW56XwqVXdxQTB0wZOOPN9MvKMhIvAyF4D5ACtCLGgykIe4zj3yzCRt8IN21P9e3sjzOz3uoWQaR4nfutBakLrwYQJt1dfeum6X1ahYAxtuXKpLaCjHi-Ne2BFy6Txf_1UPv5gi7GFvmgN7d6t0WuEG6Xs31RIK24ugGJN6wOzRM5lb6g&#34;">
+        <camunda:script scriptFormat="groovy">
+            if (!execution.hasVariable('triggerToken')) {
+                 execution.setVariable('triggerToken', "Bearer eyJhbGciOiJSUzI1NiIsInR5cCIgOiAiSldUIiwia2lkIiA6ICI3Ny1NUVdFRTNHZE5adGlsWU5IYmpsa2dVSkpaWUJWVmN1UmFZdHl5ejFjIn0.eyJleHAiOjE3NDExOTM4OTEsImlhdCI6MTc0MTE1Nzg5MSwianRpIjoiYzY0NTNkMjEtM2Y0Yy00ZWQ1LTgwNDYtODE2YjU3MDgzNDlmIiwiaXNzIjoiaHR0cDovL2tleWNsb2FrLXNlcnZpY2Uua2V5Y2xvYWsuc3ZjLmNsdXN0ZXIubG9jYWw6ODA4MC9yZWFsbXMvbWFzdGVyIiwiYXVkIjpbIkJPTFRaTUFOTl9CT1RfbW9iaXVzIiwiUEFTQ0FMX0lOVEVMTElHRU5DRV9tb2JpdXMiLCJNT05FVF9tb2JpdXMiLCJWSU5DSV9tb2JpdXMiLCJhY2NvdW50Il0sInN1YiI6IjJjZjc2ZTVmLTI2YWQtNGYyYy1iY2NjLWY0YmMxZTdiZmI2NCIsInR5cCI6IkJlYXJlciIsImF6cCI6IkhPTEFDUkFDWV9tb2JpdXMiLCJzaWQiOiIzYWIzYmFjMy0xMjAyLTQ4MWQtOTMwNi01ZjFjZWE2MzFlZGUiLCJhY3IiOiIxIiwiYWxsb3dlZC1vcmlnaW5zIjpbIi8qIl0sInJlYWxtX2FjY2VzcyI6eyJyb2xlcyI6WyJkZWZhdWx0LXJvbGVzLW1hc3RlciIsIkhDWV9URU5BTlRfQ1VTVE9NIiwib2ZmbGluZV9hY2Nlc3MiLCJ1bWFfYXV0aG9yaXphdGlvbiIsIkJPQl9URU5BTlRfQ1VTVE9NIiwiUElfVEVOQU5UX0NVU1RPTSIsIk1PTkVUX1RFTkFOVF9DVVNUT00iXX0sInJlc291cmNlX2FjY2VzcyI6eyJIT0xBQ1JBQ1lfbW9iaXVzIjp7InJvbGVzIjpbIkFHRU5UX1dSSVRFIiwiSE9MQUNSQUNZX0FQUFJPVkUiLCJIT0xBQ1JBQ1lfV1JJVEUiLCJIT0xBQ1JBQ1lfUkVBRCIsIkhPTEFDUkFDWV9FWEVDVVRFIiwiSE9MQUNSQUNZX1VTRVIiLCJBR0VOVF9FWEVDVVRFIiwiQUdFTlRfUkVBRCJdfSwiQk9MVFpNQU5OX0JPVF9tb2JpdXMiOnsicm9sZXMiOlsiQk9MVFpNQU5OX0JPVF9VU0VSIiwiQk9CX0VYRUNVVEUiLCJCT0JfQVBQUk9WRSIsIkJPQl9SRUFEIiwiQk9CX1dSSVRFIl19LCJQQVNDQUxfSU5URUxMSUdFTkNFX21vYml1cyI6eyJyb2xlcyI6WyJQQVNDQUxfSU5URUxMSUdFTkNFX1VTRVIiLCJJTkdFU1RJT05fUkVBRCIsIkNPSE9SVFNfQVBQUk9WRSIsIkNPSE9SVFNfV1JJVEUiLCJTQ0hFTUFfV1JJVEUiLCJJTkdFU1RJT05fQVBQUk9WRSIsIlVOSVZFUlNFX1JFQUQiLCJJTkdFU1RJT05fV1JJVEUiLCJJTkdFU1RJT05fRVhFQ1VURSIsIlNDSEVNQV9FWEVDVVRFIiwiU0NIRU1BX1JFQUQiLCJCSUdRVUVSWV9SRUFEIiwiQklHUVVFUllfV1JJVEUiLCJDT0hPUlRTX1JFQUQiLCJTQ0hFTUFfQVBQUk9WRSIsIlVOSVZFUlNFX0FQUFJPVkUiLCJCSUdRVUVSWV9FWEVDVVRFIiwiVU5JVkVSU0VfV1JJVEUiLCJDT0hPUlRTX0VYRUNVVEUiLCJCSUdRVUVSWV9BUFBST1ZFIiwiVU5JVkVSU0VfRVhFQ1VURSJdfSwiTU9ORVRfbW9iaXVzIjp7InJvbGVzIjpbIk1PTkVUX0FQUFJPVkUiLCJNT05FVF9VU0VSIiwiTU9ORVRfRVhFQ1VURSIsIk1PTkVUX1JFQUQiLCJNT05FVF9XUklURSJdfSwiVklOQ0lfbW9iaXVzIjp7InJvbGVzIjpbIlZJTkNJX1VTRVIiXX0sImFjY291bnQiOnsicm9sZXMiOlsibWFuYWdlLWFjY291bnQiLCJtYW5hZ2UtYWNjb3VudC1saW5rcyIsInZpZXctcHJvZmlsZSJdfX0sInNjb3BlIjoicHJvZmlsZSBlbWFpbCIsInJlcXVlc3RlclR5cGUiOiJURU5BTlQiLCJlbWFpbF92ZXJpZmllZCI6dHJ1ZSwibmFtZSI6IkFpZHRhYXMgQWlkdGFhcyIsInRlbmFudElkIjoiMmNmNzZlNWYtMjZhZC00ZjJjLWJjY2MtZjRiYzFlN2JmYjY0IiwicHJlZmVycmVkX3VzZXJuYW1lIjoicGFzc3dvcmRfdGVuYW50X2FpZHRhYXNAZ2FpYW5zb2x1dGlvbnMuY29tIiwiZ2l2ZW5fbmFtZSI6IkFpZHRhYXMiLCJmYW1pbHlfbmFtZSI6IkFpZHRhYXMiLCJlbWFpbCI6InBhc3N3b3JkX3RlbmFudF9haWR0YWFzQGdhaWFuc29sdXRpb25zLmNvbSJ9.fFXY8klez1waayovRJkaAUXWhlXiHNh3owyzoJSE12_aoLpdW5k8qDHfAFWyMLTPNFeIY_U_gdR7srD3nt_-xsL5ye-LSlyEuUIGojZ1h-mwT2GfvNJnjzx8MbFFv5hVfg3-I817tYpG-cE9R844Eg8VEGYxsixDUfMhRrW56XwqVXdxQTB0wZOOPN9MvKMhIvAyF4D5ACtCLGgykIe4zj3yzCRt8IN21P9e3sjzOz3uoWQaR4nfutBakLrwYQJt1dfeum6X1ahYAxtuXKpLaCjHi-Ne2BFy6Txf_1UPv5gi7GFvmgN7d6t0WuEG6Xs31RIK24ugGJN6wOzRM5lb6g")
+            }</camunda:script>
+      </camunda:executionListener>
+      <camunda:executionListener event="start" name="triggerObject" type="{&#34;variableType&#34;:&#34;GLOBAL&#34;,&#34;dataType&#34;:&#34;OBJECT&#34;}" value="&#34;&#34;">
+        <camunda:script scriptFormat="groovy">
+            if (!execution.hasVariable('triggerObject')) {
+                 execution.setVariable('triggerObject', "")
+            }</camunda:script>
+      </camunda:executionListener>
+      <camunda:executionListener event="start" name="trigkey" type="{&#34;variableType&#34;:&#34;GLOBAL&#34;,&#34;dataType&#34;:&#34;STRING&#34;}" value="&#34;&#34;">
+        <camunda:script scriptFormat="groovy">
+            if (!execution.hasVariable('trigkey')) {
+                 execution.setVariable('trigkey', "")
+            }</camunda:script>
+      </camunda:executionListener>
+      <camunda:executionListener event="start" name="patientidEncodedDataTrigger" type="{&#34;variableType&#34;:&#34;GLOBAL&#34;,&#34;dataType&#34;:&#34;OBJECT&#34;}" value="&#34;&#34;">
+        <camunda:script scriptFormat="groovy">
+            if (!execution.hasVariable('patientidEncodedDataTrigger')) {
+                 execution.setVariable('patientidEncodedDataTrigger', "")
+            }</camunda:script>
+      </camunda:executionListener>
+    </bpmn:extensionElements>
+    <bpmn:startEvent id="StartEvent_1">
+      <bpmn:outgoing>Flow_18ub0se</bpmn:outgoing>
+    </bpmn:startEvent>
+    <bpmn:scriptTask id="Activity_04c6753" name="Input" camunda:asyncBefore="true" scriptFormat="Javascript">
+      <bpmn:incoming>Flow_18ub0se</bpmn:incoming>
+      <bpmn:outgoing>Flow_0d99c6h</bpmn:outgoing>
+      <bpmn:script>var sourceDomain = "ig.gov-cloud.ai";
+
+
+
+var piInstancePostDataUrl = "https://"+ sourceDomain +"/pi-entity-instances-service/v2.0/schemas/{schemaId}/instances";
+execution.setVariable("piInstancePostDataUrl", piInstancePostDataUrl);
+
+var piInstanceGetwithFilterUrl = "https://"+ sourceDomain +"/pi-entity-instances-service/v2.0/schemas/{schemaId}/instances/list";
+execution.setVariable("piInstanceGetwithFilterUrl", piInstanceGetwithFilterUrl);
+
+
+var piInstanceUpdateDataUrl = "https://" + sourceDomain + "/pi-entity-instances-service/v2.0/schemas/{schemaId}/instances";
+execution.setVariable("piInstanceUpdateDataUrl", piInstanceUpdateDataUrl);
+
+
+var sourceDomain = "ig.gov-cloud.ai"
+var agentApiUrl = "https://"+sourceDomain+"/agent-orchestration-framework-fastapi/agent/interact";
+execution.setVariable("agentApiUrl", agentApiUrl);
+
+
+var bobUrl = "https://"+sourceDomain+"/bob-camunda/v1.0/camunda/execute/{workflowId}"
+execution.setVariable("bobExecuteApiUrl",bobUrl);
+
+// execution.setVariable("patient_id", "pppppppppp");
+
+var vitalsDataCheck = "false";
+execution.setVariable("vitalsDataCheck", vitalsDataCheck);
+
+var labDataCheck = "false";
+execution.setVariable("labDataCheck", labDataCheck);
+
+if(execution.hasVariable("vitalsData")){
+  execution.setVariable("vitalsDataCheck", "true");
+}else{
+  execution.setVariable("labDataCheck", "true");
+}
+
+
+var id = execution.getVariable("id");
+execution.setVariable("id", id);
+
+</bpmn:script>
+    </bpmn:scriptTask>
+    <bpmn:sequenceFlow id="Flow_18ub0se" sourceRef="StartEvent_1" targetRef="Activity_04c6753" />
+    <bpmn:serviceTask id="Activity_1evcik3_6754173406b4840ca120f353" name="Get lab Data from schema" camunda:asyncBefore="true" camunda:asyncAfter="true" camunda:type="external" camunda:topic="ApiOperationHandler">
+      <bpmn:extensionElements>
+        <camunda:inputOutput>
+          <camunda:inputParameter name="$_INPUTS_Activity_1evcik3_6754173406b4840ca120f353" type="string">{"interfacePath":"PI-ENTITY-INSTANCES APIS#children#POST /v2.0/schemas/{schemaId}/instances/list","interfaceType":"REST","activityID":"Activity_1evcik3_6754173406b4840ca120f353","communicationType":"SYNC","config_status":true,"componentId":"6754173406b4840ca120f353","productMasterConfigId":"6754173406b4840ca120f352","componentName":"PI-Entity-Instances-Service","handleError":false,"items":{"HTTP_METHOD":{"config_status":true,"type":"PROPERTY","value":"#HTTP-METHOD","sensitive":false,"items":null},"URL":{"config_status":true,"type":"GLOBALS","value":"#piInstanceGetwithFilterUrl","sensitive":false,"items":null},"QUERY_PARAM":{"config_status":false},"HTTP_HEADERS":{"config_status":true,"type":"GROUP","value":"#HTTP-HEADERS#children","sensitive":false,"items":{"Authorization":{"type":"GLOBALS","value":"Bearer eyJhbGciOiJSUzI1NiIsInR5cCIgOiAiSldUIiwia2lkIiA6ICI3Ny1NUVdFRTNHZE5adGlsWU5IYmpsa2dVSkpaWUJWVmN1UmFZdHl5ejFjIn0.eyJleHAiOjE3MjYxODIzMzEsImlhdCI6MTcyNjE0NjMzMSwianRpIjoiOGVlZTU1MDctNGVlOC00NjE1LTg3OWUtNTVkMjViMjQ2MGFmIiwiaXNzIjoiaHR0cDovL2tleWNsb2FrLmtleWNsb2FrLnN2Yy5jbHVzdGVyLmxvY2FsOjgwODAvcmVhbG1zL21hc3RlciIsImF1ZCI6ImFjY291bnQiLCJzdWIiOiJmNzFmMzU5My1hNjdhLTQwYmMtYTExYS05YTQ0NjY4YjQxMGQiLCJ0eXAiOiJCZWFyZXIiLCJhenAiOiJIT0xBQ1JBQ1kiLCJzZXNzaW9uX3N0YXRlIjoiYmI1ZjJkMzktYTQ3ZC00MjI0LWFjZGMtZTdmNzQwNDc2OTgwIiwibmFtZSI6ImtzYW14cCBrc2FteHAiLCJnaXZlbl9uYW1lIjoia3NhbXhwIiwiZmFtaWx5X25hbWUiOiJrc2FteHAiLCJwcmVmZXJyZWRfdXNlcm5hbWUiOiJwYXNzd29yZF90ZW5hbnRfa3NhbXhwQG1vYml1c2R0YWFzLmFpIiwiZW1haWwiOiJwYXNzd29yZF90ZW5hbnRfa3NhbXhwQG1vYml1c2R0YWFzLmFpIiwiZW1haWxfdmVyaWZpZWQiOnRydWUsImFjciI6IjEiLCJhbGxvd2VkLW9yaWdpbnMiOlsiLyoiXSwicmVhbG1fYWNjZXNzIjp7InJvbGVzIjpbImRlZmF1bHQtcm9sZXMtbWFzdGVyIiwib2ZmbGluZV9hY2Nlc3MiLCJ1bWFfYXV0aG9yaXphdGlvbiJdfSwicmVzb3VyY2VfYWNjZXNzIjp7IkhPTEFDUkFDWSI6eyJyb2xlcyI6WyJIT0xBQ1JBQ1lfVVNFUiJdfSwiYWNjb3VudCI6eyJyb2xlcyI6WyJtYW5hZ2UtYWNjb3VudCIsIm1hbmFnZS1hY2NvdW50LWxpbmtzIiwidmlldy1wcm9maWxlIl19fSwic2NvcGUiOiJwcm9maWxlIGVtYWlsIiwic2lkIjoiYmI1ZjJkMzktYTQ3ZC00MjI0LWFjZGMtZTdmNzQwNDc2OTgwIiwidGVuYW50SWQiOiJmNzFmMzU5My1hNjdhLTQwYmMtYTExYS05YTQ0NjY4YjQxMGQiLCJyZXF1ZXN0ZXJUeXBlIjoiVEVOQU5UIn0=.FXeDyHBhlG9L4_NCeSyHEaNEBVmhFpfSBqlcbhHaPaoydhKcA0BfuyHgxg_32kQk6z5S9IQ7nVKS2ybtOvwo0WyLWwLQchSq7Noa7LooHIMzmeWMQb_bLKtbaOti59zwIdS8CkfGaXut7RUQKISQVWmbUGsVJQa2JkG6Ng_QN0y5hFVksMWPZiXVsofQkJXHXV1CQ3gabhhHKo3BqlJwzpsCKLDfg1-4PmSl1Wqbw03Ef2yolroj5i8FoeHukOQPkwCUHrrNw-ilIp917nqZa89YbCMtDjWyaj8pEH7GJR5vMZPE2WcJPn5dSA1IHVunfatEB1cDAitaFjVNWNnddQ","label":"token","sensitive":false},"Accept":{"type":"PROPERTY","value":"#Accept","label":"Accept","sensitive":false},"Content-Type":{"type":"PROPERTY","value":"#Content-Type","label":"Content-Type","sensitive":false}}},"HTTP_PAYLOAD":{"config_status":true,"type":"GROUP","value":"#REQUEST-BODY#children#application/json#children","sensitive":false,"items":{"instanceRetrieveRequestModel.startValue":{"type":"PROPERTY","value":"#instanceRetrieveRequestModel.startValue","label":"instanceRetrieveRequestModel.startValue","sensitive":false},"instanceRetrieveRequestModel.ownedOnly":{"type":"PROPERTY","value":"#instanceRetrieveRequestModel.ownedOnly","label":"instanceRetrieveRequestModel.ownedOnly","sensitive":false},"_$":{"type":"GLOBALS","value":"","label":"labfilterPayload","sensitive":false},"instanceRetrieveRequestModel.filter":{"type":"PROPERTY","value":"#instanceRetrieveRequestModel.filter","label":"instanceRetrieveRequestModel.filter","sensitive":false},"instanceRetrieveRequestModel.projections":{"type":"PROPERTY","value":"#instanceRetrieveRequestModel.projections","label":"instanceRetrieveRequestModel.projections","sensitive":false},"pageable.page":{"type":"PROPERTY","value":"#pageable.page","label":"pageable.page","sensitive":false},"instanceRetrieveRequestModel.endTime":{"type":"PROPERTY","value":"#instanceRetrieveRequestModel.endTime","label":"instanceRetrieveRequestModel.endTime","sensitive":false},"instanceRetrieveRequestModel.metaData":{"type":"PROPERTY","value":"#instanceRetrieveRequestModel.metaData","label":"instanceRetrieveRequestModel.metaData","sensitive":false},"instanceRetrieveRequestModel.entityId":{"type":"PROPERTY","value":"#instanceRetrieveRequestModel.entityId","label":"instanceRetrieveRequestModel.entityId","sensitive":false},"instanceRetrieveRequestModel.entityIds":{"type":"PROPERTY","value":"#instanceRetrieveRequestModel.entityIds","label":"instanceRetrieveRequestModel.entityIds","sensitive":false},"instanceRetrieveRequestModel.endValue":{"type":"PROPERTY","value":"#instanceRetrieveRequestModel.endValue","label":"instanceRetrieveRequestModel.endValue","sensitive":false},"instanceRetrieveRequestModel.showDecryptedValues":{"type":"PROPERTY","value":"#instanceRetrieveRequestModel.showDecryptedValues","label":"instanceRetrieveRequestModel.showDecryptedValues","sensitive":false},"instanceRetrieveRequestModel.startTime":{"type":"PROPERTY","value":"#instanceRetrieveRequestModel.startTime","label":"instanceRetrieveRequestModel.startTime","sensitive":false},"pageable.sort":{"type":"PROPERTY","value":"#pageable.sort","label":"pageable.sort","sensitive":false},"instanceRetrieveRequestModel.betweenColumn":{"type":"PROPERTY","value":"#instanceRetrieveRequestModel.betweenColumn","label":"instanceRetrieveRequestModel.betweenColumn","sensitive":false},"instanceRetrieveRequestModel.dbType":{"type":"PROPERTY","value":"#instanceRetrieveRequestModel.dbType","label":"instanceRetrieveRequestModel.dbType","sensitive":false},"pageable.size":{"type":"PROPERTY","value":"#pageable.size","label":"pageable.size","sensitive":false}}},"PATH_PARAMETERS":{"config_status":true,"type":"GROUP","value":"#PATH-PARAMETERS#children","sensitive":false,"items":{"schemaId":{"type":"GLOBALS","value":"689c8c6be9c2d329569884e9","label":"labResultSchemaId","sensitive":false}}}}}</camunda:inputParameter>
+          <camunda:inputParameter name="$_OUTPUTS_Activity_1evcik3_6754173406b4840ca120f353" type="string">{"configs":{"RESPONSE_BODY":"RESPONSE-BODY"},"outputs":{"labFilterResult":{"activityId":"Activity_1evcik3_6754173406b4840ca120f353","property":"_$","parent":"200#children#application/json#children#_$"}}}</camunda:inputParameter>
+        </camunda:inputOutput>
+      </bpmn:extensionElements>
+    </bpmn:serviceTask>
+    <bpmn:sequenceFlow id="Flow_0d99c6h" sourceRef="Activity_04c6753" targetRef="Gateway_09wostr" />
+    <bpmn:scriptTask id="Activity_1dv4hlz" name="Create payload to send to Agent" camunda:asyncBefore="true" scriptFormat="Javascript">
+      <bpmn:incoming>Flow_1xwtef5</bpmn:incoming>
+      <bpmn:outgoing>Flow_088189v</bpmn:outgoing>
+      <bpmn:script>var labFilterResult  = S(execution.getVariable("labFilterResult"), "application/json");
+labFilterResult = labFilterResult.elements().get(0);
+
+// {
+//     "agentId": "0198cc04-e911-7ebc-825c-a9916ea108c3",
+//     "query": "tell me about this file",
+//     "userId": "1",
+//     "sessionId": "",
+//     "referenceId": "",
+//     "edit": false,
+//     "regenerate": false,
+//     "streaming": false,
+//     "fileUrl": [
+//         "https://cdn.gov-cloud.ai/_2cf76e5f-26ad-4f2c-bccc-f4bc1e7bfb64/65d583923027ad109e9dc114/9928c05b-25ed-47db-ac02-9eee18d76d44_$$_V1_Screenshot%202025-03-28%20at%2001.05.40.png"
+//     ],
+//     "overrideConfig": {}
+// }
+
+
+var fileUrls = labFilterResult.prop("labDocuments");
+
+var encounter_id = labFilterResult.prop("encounter_id").stringValue();
+var patient_id = labFilterResult.prop("patient_id").stringValue();
+
+execution.setVariable("encounter_id", encounter_id);
+execution.setVariable("patient_id", patient_id);
+
+
+
+
+var AgentPayload = S("{}");
+AgentPayload.prop("agentId", "79e87965-bd10-4068-a084-d080501f93b9");
+AgentPayload.prop("query", "analyze above reports wisely, classify it as normal, risk, or critical, and give doctor recommendation after analyzing all above files");
+AgentPayload.prop("fileUrl", fileUrls);
+
+execution.setVariable("AgentPayload", AgentPayload);
+
+
+</bpmn:script>
+    </bpmn:scriptTask>
+    <bpmn:scriptTask id="Activity_1p1extv" name="Early Warning Score API Payload" camunda:asyncBefore="true" scriptFormat="Javascript">
+      <bpmn:incoming>Flow_0hi8d82</bpmn:incoming>
+      <bpmn:outgoing>Flow_18lmfz0</bpmn:outgoing>
+      <bpmn:script>var AgentResponse = S(execution.getVariable("AgentResponse"),"application/json");
+var res = S(AgentResponse.prop("text").value(),"application/json");
+execution.setVariable("res",res);
+var encounter_id = execution.getVariable("encounter_id");
+var patient_id = execution.getVariable("patient_id");
+// var timestamp = execution.getVariable("timestamp");
+
+// 1. Get current time
+var now = new Date();
+var epochSeconds = Math.floor(now.getTime() / 1000); // 10-digit number
+execution.setVariable("epochSeconds", epochSeconds); // stored as number
+
+var timestamp = epochSeconds.toString();
+
+
+
+var ewsPayload=S('{}');
+
+
+var uuid = java.util.UUID.randomUUID().toString();
+ewsPayload.prop("ews_id", uuid);
+ewsPayload.prop("patient_id",patient_id);
+ewsPayload.prop("encounter_id",encounter_id);
+ewsPayload.prop("score_type",res.prop("score_type").stringValue());
+ewsPayload.prop("score_value",res.prop("score_value").numberValue());
+// var LocalDateTime = Java.type("java.time.LocalDateTime");
+// var DateTimeFormatter = Java.type("java.time.format.DateTimeFormatter");
+
+// Get current time
+// var now = LocalDateTime.now();
+
+// Format it as yyyy-MM-dd'T'HH:mm:ss
+// var formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss");
+// var timestamp = now.format(formatter);
+
+// Set in payload
+ewsPayload.prop("calculated_timestamp", timestamp);
+ewsPayload.prop("risk_band",res.prop("score_type").stringValue());
+ewsPayload.prop("trigger_source","workflow");
+var components_json = S('[]');
+components_json.append(res.prop("summary"));
+ewsPayload.prop("components_json",components_json);
+
+
+execution.setVariable("ewsPayload",ewsPayload);
+
+var data=S('[]');
+data.append(ewsPayload);
+var ingestPayload=S('{}');
+ingestPayload.prop("data",data);
+
+execution.setVariable("earlyWarningIngestPayload",ingestPayload);
+
+
+
+
+</bpmn:script>
+    </bpmn:scriptTask>
+    <bpmn:serviceTask id="Activity_02oi42o_6754173406b4840ca120f353" name="Early Warning Score API" camunda:asyncBefore="true" camunda:asyncAfter="true" camunda:type="external" camunda:topic="ApiOperationHandler">
+      <bpmn:extensionElements>
+        <camunda:inputOutput>
+          <camunda:inputParameter name="$_INPUTS_Activity_02oi42o_6754173406b4840ca120f353" type="string">{"interfacePath":"PI-ENTITY-INSTANCES APIS#children#POST /v2.0/schemas/{schemaID}/instances","interfaceType":"REST","activityID":"Activity_02oi42o_6754173406b4840ca120f353","communicationType":"SYNC","config_status":true,"componentId":"6754173406b4840ca120f353","productMasterConfigId":"6754173406b4840ca120f352","componentName":"PI-Entity-Instances-Service","handleError":false,"items":{"HTTP_METHOD":{"config_status":true,"type":"PROPERTY","value":"#HTTP-METHOD","sensitive":false,"items":null},"URL":{"config_status":true,"type":"GLOBALS","value":"#piInstancePostDataUrl","sensitive":false,"items":null},"QUERY_PARAM":{"config_status":false},"HTTP_HEADERS":{"config_status":true,"type":"GROUP","value":"#HTTP-HEADERS#children","sensitive":false,"items":{"Authorization":{"type":"PROPERTY","value":"#Authorization","label":"Authorization","sensitive":false},"Accept":{"type":"PROPERTY","value":"#Accept","label":"Accept","sensitive":false},"Content-Type":{"type":"PROPERTY","value":"#Content-Type","label":"Content-Type","sensitive":false}}},"HTTP_PAYLOAD":{"config_status":true,"type":"GROUP","value":"#REQUEST-BODY#children#application/json#children","sensitive":false,"items":{"metaData":{"type":"PROPERTY","value":"#metaData","label":"metaData","sensitive":false},"data":{"type":"PROPERTY","value":"#data","label":"data","sensitive":false},"_$":{"type":"GLOBALS","value":"","label":"earlyWarningIngestPayload","sensitive":false}}},"PATH_PARAMETERS":{"config_status":true,"type":"GROUP","value":"#PATH-PARAMETERS#children","sensitive":false,"items":{"schemaID":{"type":"GLOBALS","value":"689c8bbde9c2d329569884e8","label":"earlyWarningScoreSchemaId","sensitive":false}}}}}</camunda:inputParameter>
+          <camunda:inputParameter name="$_OUTPUTS_Activity_02oi42o_6754173406b4840ca120f353" type="string">{"configs":{"RESPONSE_BODY":"RESPONSE-BODY"},"outputs":{"earlyWarningScorePiResponse":{"activityId":"Activity_02oi42o_6754173406b4840ca120f353","property":"_$","parent":"200#children#application/json#children#_$"}}}</camunda:inputParameter>
+        </camunda:inputOutput>
+      </bpmn:extensionElements>
+    </bpmn:serviceTask>
+    <bpmn:serviceTask id="Activity_1ahwfu3_6754173406b4840ca120f353" name="CLinical Alert API" camunda:asyncBefore="true" camunda:asyncAfter="true" camunda:type="external" camunda:topic="ApiOperationHandler">
+      <bpmn:extensionElements>
+        <camunda:inputOutput>
+          <camunda:inputParameter name="$_INPUTS_Activity_1ahwfu3_6754173406b4840ca120f353" type="string">{"interfacePath":"PI-ENTITY-INSTANCES APIS#children#POST /v2.0/schemas/{schemaID}/instances","interfaceType":"REST","activityID":"Activity_1ahwfu3_6754173406b4840ca120f353","communicationType":"SYNC","config_status":true,"componentId":"6754173406b4840ca120f353","productMasterConfigId":"6754173406b4840ca120f352","componentName":"PI-Entity-Instances-Service","handleError":false,"items":{"HTTP_METHOD":{"config_status":true,"type":"PROPERTY","value":"#HTTP-METHOD","sensitive":false,"items":null},"URL":{"config_status":true,"type":"GLOBALS","value":"#piInstancePostDataUrl","sensitive":false,"items":null},"QUERY_PARAM":{"config_status":false},"HTTP_HEADERS":{"config_status":true,"type":"GROUP","value":"#HTTP-HEADERS#children","sensitive":false,"items":{"Authorization":{"type":"PROPERTY","value":"#Authorization","label":"Authorization","sensitive":false},"Accept":{"type":"PROPERTY","value":"#Accept","label":"Accept","sensitive":false},"Content-Type":{"type":"PROPERTY","value":"#Content-Type","label":"Content-Type","sensitive":false}}},"HTTP_PAYLOAD":{"config_status":true,"type":"GROUP","value":"#REQUEST-BODY#children#application/json#children","sensitive":false,"items":{"metaData":{"type":"PROPERTY","value":"#metaData","label":"metaData","sensitive":false},"data":{"type":"PROPERTY","value":"#data","label":"data","sensitive":false},"_$":{"type":"GLOBALS","value":"","label":"clinicalAlertIngestPayload","sensitive":false}}},"PATH_PARAMETERS":{"config_status":true,"type":"GROUP","value":"#PATH-PARAMETERS#children","sensitive":false,"items":{"schemaID":{"type":"GLOBALS","value":"689c8f66e9c2d329569884f0","label":"clinicalAlertSchemaId","sensitive":false}}}}}</camunda:inputParameter>
+          <camunda:inputParameter name="$_OUTPUTS_Activity_1ahwfu3_6754173406b4840ca120f353" type="string">{"configs":{"RESPONSE_BODY":"RESPONSE-BODY"},"outputs":{"clinicalInsertPiResponse":{"activityId":"Activity_1ahwfu3_6754173406b4840ca120f353","property":"_$","parent":"200#children#application/json#children#_$"}}}</camunda:inputParameter>
+        </camunda:inputOutput>
+      </bpmn:extensionElements>
+    </bpmn:serviceTask>
+    <bpmn:scriptTask id="Activity_1p3vmxq" name="CLinical Alert API Payload" camunda:asyncBefore="true" scriptFormat="Javascript">
+      <bpmn:incoming>Flow_0vxt5nz</bpmn:incoming>
+      <bpmn:outgoing>Flow_03hhxxc</bpmn:outgoing>
+      <bpmn:script>var AgentResponse = S(execution.getVariable("AgentResponse"),"application/json");
+
+
+// Parse the `text` field string into JSON
+
+
+
+var res = S(AgentResponse.prop("text").value(),"application/json");
+execution.setVariable("res",res);
+var encounter_id = execution.getVariable("encounter_id");
+var patient_id = execution.getVariable("patient_id");
+// var timestamp = execution.getVariable("timestamp");
+
+// 1. Get current time
+var now = new Date();
+var epochSeconds = Math.floor(now.getTime() / 1000); // 10-digit number
+execution.setVariable("epochSeconds", epochSeconds); // stored as number
+
+var timestamp = epochSeconds.toString();
+
+var score_value = res.prop("score_value").numberValue();
+score_value = score_value.toString();
+
+var clinicalAlertPayload=S('{}');
+
+
+var uuid = java.util.UUID.randomUUID().toString();
+clinicalAlertPayload.prop("alert_id", uuid);
+clinicalAlertPayload.prop("patient_id",patient_id);
+clinicalAlertPayload.prop("status","NEW");
+clinicalAlertPayload.prop("severity",res.prop("score_type").stringValue());
+clinicalAlertPayload.prop("trigger_source","Workflow");
+clinicalAlertPayload.prop("actual_value",score_value);
+clinicalAlertPayload.prop("trigger_source","Workflow");
+clinicalAlertPayload.prop("threshold_value", "0");
+clinicalAlertPayload.prop("trigger_timestamp",timestamp);
+
+
+
+// clinicalAlertPayload.prop("score_type",res.prop("score_type").stringValue());
+// clinicalAlertPayload.prop("score_value",res.prop("score_value").numberValue());
+// var LocalDateTime = Java.type("java.time.LocalDateTime");
+// var DateTimeFormatter = Java.type("java.time.format.DateTimeFormatter");
+
+// Get current time
+// var now = LocalDateTime.now();
+
+// Format it as yyyy-MM-dd'T'HH:mm:ss
+// var formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss");
+// var timestamp = now.format(formatter);
+
+// Set in payload
+// clinicalAlertPayload.prop("calculated_timestamp", timestamp);
+// clinicalAlertPayload.prop("risk_band",res.prop("score_type").stringValue());
+// clinicalAlertPayload.prop("trigger_source","workflow");
+// var components_json = S('[]');
+// components_json.append(res.prop("summary"));
+// clinicalAlertPayload.prop("components_json",components_json);
+
+
+execution.setVariable("clinicalAlertPayload",clinicalAlertPayload);
+
+var data=S('[]');
+data.append(clinicalAlertPayload);
+var ingestPayload=S('{}');
+ingestPayload.prop("data",data);
+
+execution.setVariable("clinicalAlertIngestPayload",ingestPayload);</bpmn:script>
+    </bpmn:scriptTask>
+    <bpmn:endEvent id="Event_0huu19i">
+      <bpmn:incoming>Flow_1b0c3js</bpmn:incoming>
+    </bpmn:endEvent>
+    <bpmn:serviceTask id="Activity_1d5ybk0_66b137c8d5f1326e4179056e" name="Trigger Staff Assignment Workflow" camunda:asyncBefore="true" camunda:asyncAfter="true" camunda:type="external" camunda:topic="ApiOperationHandler">
+      <bpmn:extensionElements>
+        <camunda:inputOutput>
+          <camunda:inputParameter name="$_INPUTS_Activity_1d5ybk0_66b137c8d5f1326e4179056e" type="string">{"interfacePath":"#Trigger Workflow","activityID":"Activity_1d5ybk0_66b137c8d5f1326e4179056e","config_status":true,"componentId":"66b137c8d5f1326e4179056e","productMasterConfigId":"66b137c8d5f1326e4179056d","componentName":"TRIGGER WORKFLOW","handleError":false,"items":{"HTTP_METHOD":{"config_status":true,"type":"PROPERTY","value":"#HTTP_METHOD","sensitive":false,"items":null},"URL":{"config_status":true,"type":"GLOBALS","value":"#bobExecuteApiUrl","sensitive":false,"items":null},"QUERY_PARAM":{"config_status":true,"type":"GROUP","value":"#QUERY_PARAMS#children","sensitive":false,"items":{"env":{"type":"PROPERTY","value":"#env","label":"env","sensitive":false},"sync":{"type":"PROPERTY","value":"#sync","label":"sync","sensitive":false}}},"HTTP_HEADERS":{"config_status":true,"type":"GROUP","value":"#HTTP_HEADERS#children","sensitive":false,"items":{"Authorization":{"type":"GLOBALS","value":"Bearer eyJhbGciOiJSUzI1NiIsInR5cCIgOiAiSldUIiwia2lkIiA6ICI3Ny1NUVdFRTNHZE5adGlsWU5IYmpsa2dVSkpaWUJWVmN1UmFZdHl5ejFjIn0.eyJleHAiOjE3NDExOTM4OTEsImlhdCI6MTc0MTE1Nzg5MSwianRpIjoiYzY0NTNkMjEtM2Y0Yy00ZWQ1LTgwNDYtODE2YjU3MDgzNDlmIiwiaXNzIjoiaHR0cDovL2tleWNsb2FrLXNlcnZpY2Uua2V5Y2xvYWsuc3ZjLmNsdXN0ZXIubG9jYWw6ODA4MC9yZWFsbXMvbWFzdGVyIiwiYXVkIjpbIkJPTFRaTUFOTl9CT1RfbW9iaXVzIiwiUEFTQ0FMX0lOVEVMTElHRU5DRV9tb2JpdXMiLCJNT05FVF9tb2JpdXMiLCJWSU5DSV9tb2JpdXMiLCJhY2NvdW50Il0sInN1YiI6IjJjZjc2ZTVmLTI2YWQtNGYyYy1iY2NjLWY0YmMxZTdiZmI2NCIsInR5cCI6IkJlYXJlciIsImF6cCI6IkhPTEFDUkFDWV9tb2JpdXMiLCJzaWQiOiIzYWIzYmFjMy0xMjAyLTQ4MWQtOTMwNi01ZjFjZWE2MzFlZGUiLCJhY3IiOiIxIiwiYWxsb3dlZC1vcmlnaW5zIjpbIi8qIl0sInJlYWxtX2FjY2VzcyI6eyJyb2xlcyI6WyJkZWZhdWx0LXJvbGVzLW1hc3RlciIsIkhDWV9URU5BTlRfQ1VTVE9NIiwib2ZmbGluZV9hY2Nlc3MiLCJ1bWFfYXV0aG9yaXphdGlvbiIsIkJPQl9URU5BTlRfQ1VTVE9NIiwiUElfVEVOQU5UX0NVU1RPTSIsIk1PTkVUX1RFTkFOVF9DVVNUT00iXX0sInJlc291cmNlX2FjY2VzcyI6eyJIT0xBQ1JBQ1lfbW9iaXVzIjp7InJvbGVzIjpbIkFHRU5UX1dSSVRFIiwiSE9MQUNSQUNZX0FQUFJPVkUiLCJIT0xBQ1JBQ1lfV1JJVEUiLCJIT0xBQ1JBQ1lfUkVBRCIsIkhPTEFDUkFDWV9FWEVDVVRFIiwiSE9MQUNSQUNZX1VTRVIiLCJBR0VOVF9FWEVDVVRFIiwiQUdFTlRfUkVBRCJdfSwiQk9MVFpNQU5OX0JPVF9tb2JpdXMiOnsicm9sZXMiOlsiQk9MVFpNQU5OX0JPVF9VU0VSIiwiQk9CX0VYRUNVVEUiLCJCT0JfQVBQUk9WRSIsIkJPQl9SRUFEIiwiQk9CX1dSSVRFIl19LCJQQVNDQUxfSU5URUxMSUdFTkNFX21vYml1cyI6eyJyb2xlcyI6WyJQQVNDQUxfSU5URUxMSUdFTkNFX1VTRVIiLCJJTkdFU1RJT05fUkVBRCIsIkNPSE9SVFNfQVBQUk9WRSIsIkNPSE9SVFNfV1JJVEUiLCJTQ0hFTUFfV1JJVEUiLCJJTkdFU1RJT05fQVBQUk9WRSIsIlVOSVZFUlNFX1JFQUQiLCJJTkdFU1RJT05fV1JJVEUiLCJJTkdFU1RJT05fRVhFQ1VURSIsIlNDSEVNQV9FWEVDVVRFIiwiU0NIRU1BX1JFQUQiLCJCSUdRVUVSWV9SRUFEIiwiQklHUVVFUllfV1JJVEUiLCJDT0hPUlRTX1JFQUQiLCJTQ0hFTUFfQVBQUk9WRSIsIlVOSVZFUlNFX0FQUFJPVkUiLCJCSUdRVUVSWV9FWEVDVVRFIiwiVU5JVkVSU0VfV1JJVEUiLCJDT0hPUlRTX0VYRUNVVEUiLCJCSUdRVUVSWV9BUFBST1ZFIiwiVU5JVkVSU0VfRVhFQ1VURSJdfSwiTU9ORVRfbW9iaXVzIjp7InJvbGVzIjpbIk1PTkVUX0FQUFJPVkUiLCJNT05FVF9VU0VSIiwiTU9ORVRfRVhFQ1VURSIsIk1PTkVUX1JFQUQiLCJNT05FVF9XUklURSJdfSwiVklOQ0lfbW9iaXVzIjp7InJvbGVzIjpbIlZJTkNJX1VTRVIiXX0sImFjY291bnQiOnsicm9sZXMiOlsibWFuYWdlLWFjY291bnQiLCJtYW5hZ2UtYWNjb3VudC1saW5rcyIsInZpZXctcHJvZmlsZSJdfX0sInNjb3BlIjoicHJvZmlsZSBlbWFpbCIsInJlcXVlc3RlclR5cGUiOiJURU5BTlQiLCJlbWFpbF92ZXJpZmllZCI6dHJ1ZSwibmFtZSI6IkFpZHRhYXMgQWlkdGFhcyIsInRlbmFudElkIjoiMmNmNzZlNWYtMjZhZC00ZjJjLWJjY2MtZjRiYzFlN2JmYjY0IiwicHJlZmVycmVkX3VzZXJuYW1lIjoicGFzc3dvcmRfdGVuYW50X2FpZHRhYXNAZ2FpYW5zb2x1dGlvbnMuY29tIiwiZ2l2ZW5fbmFtZSI6IkFpZHRhYXMiLCJmYW1pbHlfbmFtZSI6IkFpZHRhYXMiLCJlbWFpbCI6InBhc3N3b3JkX3RlbmFudF9haWR0YWFzQGdhaWFuc29sdXRpb25zLmNvbSJ9.fFXY8klez1waayovRJkaAUXWhlXiHNh3owyzoJSE12_aoLpdW5k8qDHfAFWyMLTPNFeIY_U_gdR7srD3nt_-xsL5ye-LSlyEuUIGojZ1h-mwT2GfvNJnjzx8MbFFv5hVfg3-I817tYpG-cE9R844Eg8VEGYxsixDUfMhRrW56XwqVXdxQTB0wZOOPN9MvKMhIvAyF4D5ACtCLGgykIe4zj3yzCRt8IN21P9e3sjzOz3uoWQaR4nfutBakLrwYQJt1dfeum6X1ahYAxtuXKpLaCjHi-Ne2BFy6Txf_1UPv5gi7GFvmgN7d6t0WuEG6Xs31RIK24ugGJN6wOzRM5lb6g","label":"triggerToken","sensitive":false},"Accept":{"type":"PROPERTY","value":"#Accept","label":"Accept","sensitive":false},"Content-Type":{"type":"PROPERTY","value":"#Content-Type","label":"Content-Type","sensitive":false}}},"HTTP_PAYLOAD":{"config_status":true,"type":"GROUP","value":"#REQUEST_BODY#children","sensitive":false,"items":{"key1":{"type":"GLOBALS","value":"","label":"patient_id","sensitive":false},"key2":{"type":"PROPERTY","value":"#key2","label":"key2","sensitive":false},"key3":{"type":"PROPERTY","value":"#key3","label":"key3","sensitive":false},"domain":{"type":"PROPERTY","value":"#domain","label":"domain","sensitive":false},"ownerId":{"type":"PROPERTY","value":"#ownerId","label":"ownerId","sensitive":false},"emailData":{"type":"PROPERTY","value":"#emailData","label":"emailData","sensitive":false}}},"PATH_PARAMETERS":{"config_status":false}}}</camunda:inputParameter>
+          <camunda:inputParameter name="$_OUTPUTS_Activity_1d5ybk0_66b137c8d5f1326e4179056e" type="string">{"configs":{"RESPONSE_BODY":"RESPONSE_BODY"},"outputs":{"triggerResponseWf":{"activityId":"Activity_1d5ybk0_66b137c8d5f1326e4179056e","property":"_$","parent":"RESPONSE_BODY#_$"}}}</camunda:inputParameter>
+        </camunda:inputOutput>
+      </bpmn:extensionElements>
+    </bpmn:serviceTask>
+    <bpmn:exclusiveGateway id="Gateway_09wostr" default="Flow_1ocook9">
+      <bpmn:incoming>Flow_0d99c6h</bpmn:incoming>
+      <bpmn:outgoing>Flow_0qgmbl0</bpmn:outgoing>
+      <bpmn:outgoing>Flow_1ocook9</bpmn:outgoing>
+    </bpmn:exclusiveGateway>
+    <bpmn:sequenceFlow id="Flow_0qgmbl0" name="lab" sourceRef="Gateway_09wostr" targetRef="Activity_0vks5ge">
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${labDataCheck=="true"}</bpmn:conditionExpression>
+    </bpmn:sequenceFlow>
+    <bpmn:scriptTask id="Activity_0vks5ge" name="payload to get Lab data" camunda:asyncBefore="true" scriptFormat="Javascript">
+      <bpmn:incoming>Flow_0qgmbl0</bpmn:incoming>
+      <bpmn:outgoing>Flow_023zjcz</bpmn:outgoing>
+      <bpmn:script>// /_2cf76e5f-26ad-4f2c-bccc-f4bc1e7bfb64/rakhealthlabsrecords/fd66eb17-87ef-400c-b403-cda382ffdb89_$$_V1_testmri.txt
+
+
+// /_2cf76e5f-26ad-4f2c-bccc-f4bc1e7bfb64/rakhealthlabsrecords/ee3c2b68-2026-433e-8549-97319aeed64d_$$_V1_testmri2.txt
+
+
+
+var lab_id = execution.getVariable("id");
+
+var filterPayload = S("{}");
+var filter = S("{}");
+filter.prop("lab_id", lab_id);
+
+filterPayload.prop("dbType", "TIDB");
+filterPayload.prop("filter", filter);
+
+execution.setVariable("labfilterPayload", filterPayload);
+</bpmn:script>
+    </bpmn:scriptTask>
+    <bpmn:serviceTask id="Activity_0fai8ot_01989d25-ef73-793a-9c35-84e01893737b" name="Agent_Interact_API" camunda:asyncBefore="true" camunda:asyncAfter="true" camunda:logo="" camunda:type="external" camunda:topic="ApiOperationHandler">
+      <bpmn:extensionElements>
+        <camunda:inputOutput>
+          <camunda:inputParameter name="$_INPUTS_Activity_0fai8ot_01989d25-ef73-793a-9c35-84e01893737b" type="string">{"interfacePath":"#AgentInteraction","interfaceType":"REST","activityID":"Activity_0fai8ot_01989d25-ef73-793a-9c35-84e01893737b","communicationType":"SYNC","config_status":true,"componentId":"01989d25-ef73-793a-9c35-84e01893737b","productMasterConfigId":"689aeafda3680c26aee4c870","componentName":"Agent_Interact_API","handleError":false,"items":{"HTTP_METHOD":{"config_status":true,"type":"PROPERTY","value":"#HTTP_METHOD","sensitive":false,"items":null},"URL":{"config_status":true,"type":"GLOBALS","value":"#agentApiUrl","sensitive":false,"items":null},"QUERY_PARAM":{"config_status":false},"HTTP_HEADERS":{"config_status":true,"type":"GROUP","value":"#HTTP_HEADERS#children","sensitive":false,"items":{"Authorization":{"type":"PROPERTY","value":"#Authorization","label":"Authorization","sensitive":false},"Content-Type":{"type":"PROPERTY","value":"#Content-Type","label":"Content-Type","sensitive":false}}},"HTTP_PAYLOAD":{"config_status":true,"type":"GROUP","value":"#REQUEST_BODY#children","sensitive":false,"items":{"_$":{"type":"GLOBALS","value":"","label":"AgentPayload","sensitive":false}}},"PATH_PARAMETERS":{"config_status":false}}}</camunda:inputParameter>
+          <camunda:inputParameter name="$_OUTPUTS_Activity_0fai8ot_01989d25-ef73-793a-9c35-84e01893737b" type="string">{"configs":{"RESPONSE_BODY":"RESPONSE_BODY"},"outputs":{"AgentResponse":{"activityId":"Activity_0fai8ot_01989d25-ef73-793a-9c35-84e01893737b","property":"_$","parent":"RESPONSE_BODY#_$"}}}</camunda:inputParameter>
+        </camunda:inputOutput>
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_088189v</bpmn:incoming>
+      <bpmn:outgoing>Flow_0un58pa</bpmn:outgoing>
+    </bpmn:serviceTask>
+    <bpmn:sequenceFlow id="Flow_088189v" sourceRef="Activity_1dv4hlz" targetRef="Activity_0fai8ot_01989d25-ef73-793a-9c35-84e01893737b" />
+    <bpmn:scriptTask id="Activity_10ojq7t" name="Audit Payload" camunda:asyncBefore="true" scriptFormat="Javascript">
+      <bpmn:incoming>Flow_062zad7</bpmn:incoming>
+      <bpmn:outgoing>Flow_1de1rxo</bpmn:outgoing>
+      <bpmn:script>
+var encounter_id = execution.getVariable("encounter_id");
+var patient_id = execution.getVariable("patient_id");
+
+// 1. Get current time
+var now = new Date();
+var epochSeconds = Math.floor(now.getTime() / 1000); // 10-digit number
+execution.setVariable("epochSeconds", epochSeconds); // stored as number
+
+var timestamp = epochSeconds.toString();
+
+
+
+var clinicalAuditPayload=S('{}');
+
+
+var uuid = java.util.UUID.randomUUID().toString();
+clinicalAuditPayload.prop("audit_id", uuid);
+
+clinicalAuditPayload.prop("actor","labRecordEscaltionWortkflow");
+clinicalAuditPayload.prop("action","ClinicalRecords Insertion");
+clinicalAuditPayload.prop("details","Clinical Records have been Updated in Database.");
+clinicalAuditPayload.prop("timestamp",timestamp);
+
+
+
+
+execution.setVariable("clinicalAuditPayload",clinicalAuditPayload);
+
+var data=S('[]');
+data.append(clinicalAuditPayload);
+var ingestPayload=S('{}');
+ingestPayload.prop("data",data);
+
+execution.setVariable("ClinicalAuditIngestPayload",ingestPayload);</bpmn:script>
+    </bpmn:scriptTask>
+    <bpmn:serviceTask id="Activity_0qd1tgj_6754173406b4840ca120f353" name="Ingest Audit" camunda:asyncBefore="true" camunda:asyncAfter="true" camunda:type="external" camunda:topic="ApiOperationHandler">
+      <bpmn:extensionElements>
+        <camunda:inputOutput>
+          <camunda:inputParameter name="$_INPUTS_Activity_0qd1tgj_6754173406b4840ca120f353" type="string">{"interfacePath":"PI-ENTITY-INSTANCES APIS#children#POST /v2.0/schemas/{schemaID}/instances","interfaceType":"REST","activityID":"Activity_0qd1tgj_6754173406b4840ca120f353","communicationType":"SYNC","config_status":true,"componentId":"6754173406b4840ca120f353","productMasterConfigId":"6754173406b4840ca120f352","componentName":"PI-Entity-Instances-Service","handleError":false,"items":{"HTTP_METHOD":{"config_status":true,"type":"PROPERTY","value":"#HTTP-METHOD","sensitive":false,"items":null},"URL":{"config_status":true,"type":"GLOBALS","value":"#piInstancePostDataUrl","sensitive":false,"items":null},"QUERY_PARAM":{"config_status":false},"HTTP_HEADERS":{"config_status":true,"type":"GROUP","value":"#HTTP-HEADERS#children","sensitive":false,"items":{"Authorization":{"type":"PROPERTY","value":"#Authorization","label":"Authorization","sensitive":false},"Accept":{"type":"PROPERTY","value":"#Accept","label":"Accept","sensitive":false},"Content-Type":{"type":"PROPERTY","value":"#Content-Type","label":"Content-Type","sensitive":false}}},"HTTP_PAYLOAD":{"config_status":true,"type":"GROUP","value":"#REQUEST-BODY#children#application/json#children","sensitive":false,"items":{"metaData":{"type":"PROPERTY","value":"#metaData","label":"metaData","sensitive":false},"data":{"type":"PROPERTY","value":"#data","label":"data","sensitive":false},"_$":{"type":"GLOBALS","value":"","label":"ClinicalAuditIngestPayload","sensitive":false}}},"PATH_PARAMETERS":{"config_status":true,"type":"GROUP","value":"#PATH-PARAMETERS#children","sensitive":false,"items":{"schemaID":{"type":"GLOBALS","value":"68a719ad4e7cc90774f5db15","label":"AuditLogEntrySchemaId","sensitive":false}}}}}</camunda:inputParameter>
+        </camunda:inputOutput>
+      </bpmn:extensionElements>
+    </bpmn:serviceTask>
+    <bpmn:scriptTask id="Activity_0kvob51" name="Audit Payload" camunda:asyncBefore="true" scriptFormat="Javascript">
+      <bpmn:incoming>Flow_0vjhvpm</bpmn:incoming>
+      <bpmn:outgoing>Flow_1txcxch</bpmn:outgoing>
+      <bpmn:script>
+var encounter_id = execution.getVariable("encounter_id");
+var patient_id = execution.getVariable("patient_id");
+
+// 1. Get current time
+var now = new Date();
+var epochSeconds = Math.floor(now.getTime() / 1000); // 10-digit number
+execution.setVariable("epochSeconds", epochSeconds); // stored as number
+
+var timestamp = epochSeconds.toString();
+
+
+
+var earlyWarningsAuditPayload=S('{}');
+
+
+var uuid = java.util.UUID.randomUUID().toString();
+earlyWarningsAuditPayload.prop("audit_id", uuid);
+
+earlyWarningsAuditPayload.prop("actor","labRecordEscaltionWortkflow");
+earlyWarningsAuditPayload.prop("action","EarlyWarninigs Records Updation");
+earlyWarningsAuditPayload.prop("details","EarlyWarnings Records with patientId "+patient_id+" have been Updated in Database.");
+earlyWarningsAuditPayload.prop("timestamp",timestamp);
+
+
+
+
+execution.setVariable("earlyWarningsAuditPayload",earlyWarningsAuditPayload);
+
+var data=S('[]');
+data.append(earlyWarningsAuditPayload);
+var ingestPayload=S('{}');
+ingestPayload.prop("data",data);
+
+execution.setVariable("EarlyWarningsAuditIngestPayload",ingestPayload);</bpmn:script>
+    </bpmn:scriptTask>
+    <bpmn:serviceTask id="Activity_0goc4l2_6754173406b4840ca120f353" name="Ingest Audit" camunda:asyncBefore="true" camunda:asyncAfter="true" camunda:type="external" camunda:topic="ApiOperationHandler">
+      <bpmn:extensionElements>
+        <camunda:inputOutput>
+          <camunda:inputParameter name="$_INPUTS_Activity_0goc4l2_6754173406b4840ca120f353" type="string">{"interfacePath":"PI-ENTITY-INSTANCES APIS#children#POST /v2.0/schemas/{schemaID}/instances","interfaceType":"REST","activityID":"Activity_0goc4l2_6754173406b4840ca120f353","communicationType":"SYNC","config_status":true,"componentId":"6754173406b4840ca120f353","productMasterConfigId":"6754173406b4840ca120f352","componentName":"PI-Entity-Instances-Service","handleError":false,"items":{"HTTP_METHOD":{"config_status":true,"type":"PROPERTY","value":"#HTTP-METHOD","sensitive":false,"items":null},"URL":{"config_status":true,"type":"GLOBALS","value":"#piInstancePostDataUrl","sensitive":false,"items":null},"QUERY_PARAM":{"config_status":false},"HTTP_HEADERS":{"config_status":true,"type":"GROUP","value":"#HTTP-HEADERS#children","sensitive":false,"items":{"Authorization":{"type":"PROPERTY","value":"#Authorization","label":"Authorization","sensitive":false},"Accept":{"type":"PROPERTY","value":"#Accept","label":"Accept","sensitive":false},"Content-Type":{"type":"PROPERTY","value":"#Content-Type","label":"Content-Type","sensitive":false}}},"HTTP_PAYLOAD":{"config_status":true,"type":"GROUP","value":"#REQUEST-BODY#children#application/json#children","sensitive":false,"items":{"metaData":{"type":"PROPERTY","value":"#metaData","label":"metaData","sensitive":false},"data":{"type":"PROPERTY","value":"#data","label":"data","sensitive":false},"_$":{"type":"GLOBALS","value":"","label":"EarlyWarningsAuditIngestPayload","sensitive":false}}},"PATH_PARAMETERS":{"config_status":true,"type":"GROUP","value":"#PATH-PARAMETERS#children","sensitive":false,"items":{"schemaID":{"type":"GLOBALS","value":"68a719ad4e7cc90774f5db15","label":"AuditLogEntrySchemaId","sensitive":false}}}}}</camunda:inputParameter>
+          <camunda:inputParameter name="$_OUTPUTS_Activity_0goc4l2_6754173406b4840ca120f353" type="string">{"configs":{"RESPONSE_BODY":"RESPONSE-BODY"},"outputs":{"earlywarningAuditPiresponse":{"activityId":"Activity_0goc4l2_6754173406b4840ca120f353","property":"_$","parent":"200#children#application/json#children#_$"}}}</camunda:inputParameter>
+        </camunda:inputOutput>
+      </bpmn:extensionElements>
+    </bpmn:serviceTask>
+    <bpmn:parallelGateway id="Gateway_1s3oy6r">
+      <bpmn:incoming>Flow_0un58pa</bpmn:incoming>
+      <bpmn:outgoing>Flow_0vxt5nz</bpmn:outgoing>
+      <bpmn:outgoing>Flow_0hi8d82</bpmn:outgoing>
+    </bpmn:parallelGateway>
+    <bpmn:sequenceFlow id="Flow_0un58pa" sourceRef="Activity_0fai8ot_01989d25-ef73-793a-9c35-84e01893737b" targetRef="Gateway_1s3oy6r" />
+    <bpmn:sequenceFlow id="Flow_0vxt5nz" sourceRef="Gateway_1s3oy6r" targetRef="Activity_1p3vmxq" />
+    <bpmn:sequenceFlow id="Flow_0hi8d82" sourceRef="Gateway_1s3oy6r" targetRef="Activity_1p1extv" />
+    <bpmn:parallelGateway id="Gateway_0je1h7z">
+      <bpmn:incoming>Flow_0zt8cpf</bpmn:incoming>
+      <bpmn:outgoing>Flow_1b0c3js</bpmn:outgoing>
+    </bpmn:parallelGateway>
+    <bpmn:sequenceFlow id="Flow_1b0c3js" sourceRef="Gateway_0je1h7z" targetRef="Event_0huu19i" />
+    <bpmn:serviceTask id="Activity_118p3bh_67907b973ce0cb22916ea856" name="Dbaas Get lab Data" camunda:asyncBefore="true" camunda:asyncAfter="true" camunda:type="external" camunda:topic="ApiOperationHandler">
+      <bpmn:extensionElements>
+        <camunda:inputOutput>
+          <camunda:inputParameter name="$_INPUTS_Activity_118p3bh_67907b973ce0cb22916ea856" type="string">{"interfacePath":"#GET INSTANCES","activityID":"Activity_118p3bh_67907b973ce0cb22916ea856","config_status":true,"componentId":"67907b973ce0cb22916ea856","productMasterConfigId":"67907b973ce0cb22916ea855","componentName":"DBAAS_PI","handleError":false,"items":{"HTTP_METHOD":{"config_status":true,"type":"PROPERTY","value":"#HTTP-METHOD","sensitive":false,"items":null},"URL":{"config_status":true,"type":"GLOBALS","value":"#piInstanceGetwithFilterUrl","sensitive":false,"items":null},"QUERY_PARAM":{"config_status":false},"HTTP_HEADERS":{"config_status":true,"type":"GROUP","value":"#HTTP_HEADERS#children","sensitive":false,"items":{"Authorization":{"type":"GLOBALS","value":"Bearer eyJhbGciOiJSUzI1NiIsInR5cCIgOiAiSldUIiwia2lkIiA6ICI3Ny1NUVdFRTNHZE5adGlsWU5IYmpsa2dVSkpaWUJWVmN1UmFZdHl5ejFjIn0.eyJleHAiOjE3MjYxODIzMzEsImlhdCI6MTcyNjE0NjMzMSwianRpIjoiOGVlZTU1MDctNGVlOC00NjE1LTg3OWUtNTVkMjViMjQ2MGFmIiwiaXNzIjoiaHR0cDovL2tleWNsb2FrLmtleWNsb2FrLnN2Yy5jbHVzdGVyLmxvY2FsOjgwODAvcmVhbG1zL21hc3RlciIsImF1ZCI6ImFjY291bnQiLCJzdWIiOiJmNzFmMzU5My1hNjdhLTQwYmMtYTExYS05YTQ0NjY4YjQxMGQiLCJ0eXAiOiJCZWFyZXIiLCJhenAiOiJIT0xBQ1JBQ1kiLCJzZXNzaW9uX3N0YXRlIjoiYmI1ZjJkMzktYTQ3ZC00MjI0LWFjZGMtZTdmNzQwNDc2OTgwIiwibmFtZSI6ImtzYW14cCBrc2FteHAiLCJnaXZlbl9uYW1lIjoia3NhbXhwIiwiZmFtaWx5X25hbWUiOiJrc2FteHAiLCJwcmVmZXJyZWRfdXNlcm5hbWUiOiJwYXNzd29yZF90ZW5hbnRfa3NhbXhwQG1vYml1c2R0YWFzLmFpIiwiZW1haWwiOiJwYXNzd29yZF90ZW5hbnRfa3NhbXhwQG1vYml1c2R0YWFzLmFpIiwiZW1haWxfdmVyaWZpZWQiOnRydWUsImFjciI6IjEiLCJhbGxvd2VkLW9yaWdpbnMiOlsiLyoiXSwicmVhbG1fYWNjZXNzIjp7InJvbGVzIjpbImRlZmF1bHQtcm9sZXMtbWFzdGVyIiwib2ZmbGluZV9hY2Nlc3MiLCJ1bWFfYXV0aG9yaXphdGlvbiJdfSwicmVzb3VyY2VfYWNjZXNzIjp7IkhPTEFDUkFDWSI6eyJyb2xlcyI6WyJIT0xBQ1JBQ1lfVVNFUiJdfSwiYWNjb3VudCI6eyJyb2xlcyI6WyJtYW5hZ2UtYWNjb3VudCIsIm1hbmFnZS1hY2NvdW50LWxpbmtzIiwidmlldy1wcm9maWxlIl19fSwic2NvcGUiOiJwcm9maWxlIGVtYWlsIiwic2lkIjoiYmI1ZjJkMzktYTQ3ZC00MjI0LWFjZGMtZTdmNzQwNDc2OTgwIiwidGVuYW50SWQiOiJmNzFmMzU5My1hNjdhLTQwYmMtYTExYS05YTQ0NjY4YjQxMGQiLCJyZXF1ZXN0ZXJUeXBlIjoiVEVOQU5UIn0=.FXeDyHBhlG9L4_NCeSyHEaNEBVmhFpfSBqlcbhHaPaoydhKcA0BfuyHgxg_32kQk6z5S9IQ7nVKS2ybtOvwo0WyLWwLQchSq7Noa7LooHIMzmeWMQb_bLKtbaOti59zwIdS8CkfGaXut7RUQKISQVWmbUGsVJQa2JkG6Ng_QN0y5hFVksMWPZiXVsofQkJXHXV1CQ3gabhhHKo3BqlJwzpsCKLDfg1-4PmSl1Wqbw03Ef2yolroj5i8FoeHukOQPkwCUHrrNw-ilIp917nqZa89YbCMtDjWyaj8pEH7GJR5vMZPE2WcJPn5dSA1IHVunfatEB1cDAitaFjVNWNnddQ","label":"token","sensitive":false},"Content-Type":{"type":"PROPERTY","value":"#Content-Type","label":"Content-Type","sensitive":false}}},"HTTP_PAYLOAD":{"config_status":true,"type":"GROUP","value":"#REQ_BODY#children","sensitive":false,"items":{"_$":{"type":"GLOBALS","value":"","label":"labfilterPayload","sensitive":false}}},"PATH_PARAMETERS":{"config_status":true,"type":"GROUP","value":"#PATH_PARAMS#children","sensitive":false,"items":{"schemaId":{"type":"GLOBALS","value":"689c8c6be9c2d329569884e9","label":"labResultSchemaId","sensitive":false}}}}}</camunda:inputParameter>
+          <camunda:inputParameter name="$_OUTPUTS_Activity_118p3bh_67907b973ce0cb22916ea856" type="string">{"configs":{"RESPONSE_BODY":"RES_BODY"},"outputs":{"labFilterResult":{"activityId":"Activity_118p3bh_67907b973ce0cb22916ea856","property":"_$","parent":"RES_BODY#_$"}}}</camunda:inputParameter>
+        </camunda:inputOutput>
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_023zjcz</bpmn:incoming>
+      <bpmn:outgoing>Flow_1xwtef5</bpmn:outgoing>
+    </bpmn:serviceTask>
+    <bpmn:sequenceFlow id="Flow_023zjcz" sourceRef="Activity_0vks5ge" targetRef="Activity_118p3bh_67907b973ce0cb22916ea856" />
+    <bpmn:sequenceFlow id="Flow_1xwtef5" sourceRef="Activity_118p3bh_67907b973ce0cb22916ea856" targetRef="Activity_1dv4hlz" />
+    <bpmn:serviceTask id="Activity_1z0jflv_67907b973ce0cb22916ea856" name="Dbaas Early Warning Score API" camunda:asyncBefore="true" camunda:asyncAfter="true" camunda:type="external" camunda:topic="ApiOperationHandler">
+      <bpmn:extensionElements>
+        <camunda:inputOutput>
+          <camunda:inputParameter name="$_INPUTS_Activity_1z0jflv_67907b973ce0cb22916ea856" type="string">{"interfacePath":"#POST INSTANCES","activityID":"Activity_1z0jflv_67907b973ce0cb22916ea856","config_status":true,"componentId":"67907b973ce0cb22916ea856","productMasterConfigId":"67907b973ce0cb22916ea855","componentName":"DBAAS_PI","handleError":false,"items":{"HTTP_METHOD":{"config_status":true,"type":"PROPERTY","value":"#HTTP-METHOD","sensitive":false,"items":null},"URL":{"config_status":true,"type":"GLOBALS","value":"#piInstancePostDataUrl","sensitive":false,"items":null},"QUERY_PARAM":{"config_status":false},"HTTP_HEADERS":{"config_status":true,"type":"GROUP","value":"#HTTP_HEADERS#children","sensitive":false,"items":{"Authorization":{"type":"GLOBALS","value":"Bearer eyJhbGciOiJSUzI1NiIsInR5cCIgOiAiSldUIiwia2lkIiA6ICI3Ny1NUVdFRTNHZE5adGlsWU5IYmpsa2dVSkpaWUJWVmN1UmFZdHl5ejFjIn0.eyJleHAiOjE3MjYxODIzMzEsImlhdCI6MTcyNjE0NjMzMSwianRpIjoiOGVlZTU1MDctNGVlOC00NjE1LTg3OWUtNTVkMjViMjQ2MGFmIiwiaXNzIjoiaHR0cDovL2tleWNsb2FrLmtleWNsb2FrLnN2Yy5jbHVzdGVyLmxvY2FsOjgwODAvcmVhbG1zL21hc3RlciIsImF1ZCI6ImFjY291bnQiLCJzdWIiOiJmNzFmMzU5My1hNjdhLTQwYmMtYTExYS05YTQ0NjY4YjQxMGQiLCJ0eXAiOiJCZWFyZXIiLCJhenAiOiJIT0xBQ1JBQ1kiLCJzZXNzaW9uX3N0YXRlIjoiYmI1ZjJkMzktYTQ3ZC00MjI0LWFjZGMtZTdmNzQwNDc2OTgwIiwibmFtZSI6ImtzYW14cCBrc2FteHAiLCJnaXZlbl9uYW1lIjoia3NhbXhwIiwiZmFtaWx5X25hbWUiOiJrc2FteHAiLCJwcmVmZXJyZWRfdXNlcm5hbWUiOiJwYXNzd29yZF90ZW5hbnRfa3NhbXhwQG1vYml1c2R0YWFzLmFpIiwiZW1haWwiOiJwYXNzd29yZF90ZW5hbnRfa3NhbXhwQG1vYml1c2R0YWFzLmFpIiwiZW1haWxfdmVyaWZpZWQiOnRydWUsImFjciI6IjEiLCJhbGxvd2VkLW9yaWdpbnMiOlsiLyoiXSwicmVhbG1fYWNjZXNzIjp7InJvbGVzIjpbImRlZmF1bHQtcm9sZXMtbWFzdGVyIiwib2ZmbGluZV9hY2Nlc3MiLCJ1bWFfYXV0aG9yaXphdGlvbiJdfSwicmVzb3VyY2VfYWNjZXNzIjp7IkhPTEFDUkFDWSI6eyJyb2xlcyI6WyJIT0xBQ1JBQ1lfVVNFUiJdfSwiYWNjb3VudCI6eyJyb2xlcyI6WyJtYW5hZ2UtYWNjb3VudCIsIm1hbmFnZS1hY2NvdW50LWxpbmtzIiwidmlldy1wcm9maWxlIl19fSwic2NvcGUiOiJwcm9maWxlIGVtYWlsIiwic2lkIjoiYmI1ZjJkMzktYTQ3ZC00MjI0LWFjZGMtZTdmNzQwNDc2OTgwIiwidGVuYW50SWQiOiJmNzFmMzU5My1hNjdhLTQwYmMtYTExYS05YTQ0NjY4YjQxMGQiLCJyZXF1ZXN0ZXJUeXBlIjoiVEVOQU5UIn0=.FXeDyHBhlG9L4_NCeSyHEaNEBVmhFpfSBqlcbhHaPaoydhKcA0BfuyHgxg_32kQk6z5S9IQ7nVKS2ybtOvwo0WyLWwLQchSq7Noa7LooHIMzmeWMQb_bLKtbaOti59zwIdS8CkfGaXut7RUQKISQVWmbUGsVJQa2JkG6Ng_QN0y5hFVksMWPZiXVsofQkJXHXV1CQ3gabhhHKo3BqlJwzpsCKLDfg1-4PmSl1Wqbw03Ef2yolroj5i8FoeHukOQPkwCUHrrNw-ilIp917nqZa89YbCMtDjWyaj8pEH7GJR5vMZPE2WcJPn5dSA1IHVunfatEB1cDAitaFjVNWNnddQ","label":"token","sensitive":false},"Content-Type":{"type":"PROPERTY","value":"#Content-Type","label":"Content-Type","sensitive":false}}},"HTTP_PAYLOAD":{"config_status":true,"type":"GROUP","value":"#REQ_BODY#children","sensitive":false,"items":{"_$":{"type":"GLOBALS","value":"","label":"earlyWarningIngestPayload","sensitive":false}}},"PATH_PARAMETERS":{"config_status":true,"type":"GROUP","value":"#PATH_PARAMS#children","sensitive":false,"items":{"schemaId":{"type":"GLOBALS","value":"689c8bbde9c2d329569884e8","label":"earlyWarningScoreSchemaId","sensitive":false}}}}}</camunda:inputParameter>
+          <camunda:inputParameter name="$_OUTPUTS_Activity_1z0jflv_67907b973ce0cb22916ea856" type="string">{"configs":{"RESPONSE_BODY":"RES_BODY"},"outputs":{"earlyWarningScorePiResponse":{"activityId":"Activity_1z0jflv_67907b973ce0cb22916ea856","property":"_$","parent":"RES_BODY#_$"}}}</camunda:inputParameter>
+        </camunda:inputOutput>
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_18lmfz0</bpmn:incoming>
+      <bpmn:outgoing>Flow_0vjhvpm</bpmn:outgoing>
+    </bpmn:serviceTask>
+    <bpmn:serviceTask id="Activity_14x7s22_67907b973ce0cb22916ea856" name="dbaas CLinical Alert API" camunda:asyncBefore="true" camunda:asyncAfter="true" camunda:type="external" camunda:topic="ApiOperationHandler">
+      <bpmn:extensionElements>
+        <camunda:inputOutput>
+          <camunda:inputParameter name="$_INPUTS_Activity_14x7s22_67907b973ce0cb22916ea856" type="string">{"interfacePath":"#POST INSTANCES","activityID":"Activity_14x7s22_67907b973ce0cb22916ea856","config_status":true,"componentId":"67907b973ce0cb22916ea856","productMasterConfigId":"67907b973ce0cb22916ea855","componentName":"DBAAS_PI","handleError":false,"items":{"HTTP_METHOD":{"config_status":true,"type":"PROPERTY","value":"#HTTP-METHOD","sensitive":false,"items":null},"URL":{"config_status":true,"type":"GLOBALS","value":"#piInstancePostDataUrl","sensitive":false,"items":null},"QUERY_PARAM":{"config_status":false},"HTTP_HEADERS":{"config_status":true,"type":"GROUP","value":"#HTTP_HEADERS#children","sensitive":false,"items":{"Authorization":{"type":"GLOBALS","value":"Bearer eyJhbGciOiJSUzI1NiIsInR5cCIgOiAiSldUIiwia2lkIiA6ICI3Ny1NUVdFRTNHZE5adGlsWU5IYmpsa2dVSkpaWUJWVmN1UmFZdHl5ejFjIn0.eyJleHAiOjE3MjYxODIzMzEsImlhdCI6MTcyNjE0NjMzMSwianRpIjoiOGVlZTU1MDctNGVlOC00NjE1LTg3OWUtNTVkMjViMjQ2MGFmIiwiaXNzIjoiaHR0cDovL2tleWNsb2FrLmtleWNsb2FrLnN2Yy5jbHVzdGVyLmxvY2FsOjgwODAvcmVhbG1zL21hc3RlciIsImF1ZCI6ImFjY291bnQiLCJzdWIiOiJmNzFmMzU5My1hNjdhLTQwYmMtYTExYS05YTQ0NjY4YjQxMGQiLCJ0eXAiOiJCZWFyZXIiLCJhenAiOiJIT0xBQ1JBQ1kiLCJzZXNzaW9uX3N0YXRlIjoiYmI1ZjJkMzktYTQ3ZC00MjI0LWFjZGMtZTdmNzQwNDc2OTgwIiwibmFtZSI6ImtzYW14cCBrc2FteHAiLCJnaXZlbl9uYW1lIjoia3NhbXhwIiwiZmFtaWx5X25hbWUiOiJrc2FteHAiLCJwcmVmZXJyZWRfdXNlcm5hbWUiOiJwYXNzd29yZF90ZW5hbnRfa3NhbXhwQG1vYml1c2R0YWFzLmFpIiwiZW1haWwiOiJwYXNzd29yZF90ZW5hbnRfa3NhbXhwQG1vYml1c2R0YWFzLmFpIiwiZW1haWxfdmVyaWZpZWQiOnRydWUsImFjciI6IjEiLCJhbGxvd2VkLW9yaWdpbnMiOlsiLyoiXSwicmVhbG1fYWNjZXNzIjp7InJvbGVzIjpbImRlZmF1bHQtcm9sZXMtbWFzdGVyIiwib2ZmbGluZV9hY2Nlc3MiLCJ1bWFfYXV0aG9yaXphdGlvbiJdfSwicmVzb3VyY2VfYWNjZXNzIjp7IkhPTEFDUkFDWSI6eyJyb2xlcyI6WyJIT0xBQ1JBQ1lfVVNFUiJdfSwiYWNjb3VudCI6eyJyb2xlcyI6WyJtYW5hZ2UtYWNjb3VudCIsIm1hbmFnZS1hY2NvdW50LWxpbmtzIiwidmlldy1wcm9maWxlIl19fSwic2NvcGUiOiJwcm9maWxlIGVtYWlsIiwic2lkIjoiYmI1ZjJkMzktYTQ3ZC00MjI0LWFjZGMtZTdmNzQwNDc2OTgwIiwidGVuYW50SWQiOiJmNzFmMzU5My1hNjdhLTQwYmMtYTExYS05YTQ0NjY4YjQxMGQiLCJyZXF1ZXN0ZXJUeXBlIjoiVEVOQU5UIn0=.FXeDyHBhlG9L4_NCeSyHEaNEBVmhFpfSBqlcbhHaPaoydhKcA0BfuyHgxg_32kQk6z5S9IQ7nVKS2ybtOvwo0WyLWwLQchSq7Noa7LooHIMzmeWMQb_bLKtbaOti59zwIdS8CkfGaXut7RUQKISQVWmbUGsVJQa2JkG6Ng_QN0y5hFVksMWPZiXVsofQkJXHXV1CQ3gabhhHKo3BqlJwzpsCKLDfg1-4PmSl1Wqbw03Ef2yolroj5i8FoeHukOQPkwCUHrrNw-ilIp917nqZa89YbCMtDjWyaj8pEH7GJR5vMZPE2WcJPn5dSA1IHVunfatEB1cDAitaFjVNWNnddQ","label":"token","sensitive":false},"Content-Type":{"type":"PROPERTY","value":"#Content-Type","label":"Content-Type","sensitive":false}}},"HTTP_PAYLOAD":{"config_status":true,"type":"GROUP","value":"#REQ_BODY#children","sensitive":false,"items":{"_$":{"type":"GLOBALS","value":"","label":"clinicalAlertIngestPayload","sensitive":false}}},"PATH_PARAMETERS":{"config_status":true,"type":"GROUP","value":"#PATH_PARAMS#children","sensitive":false,"items":{"schemaId":{"type":"GLOBALS","value":"689c8f66e9c2d329569884f0","label":"clinicalAlertSchemaId","sensitive":false}}}}}</camunda:inputParameter>
+          <camunda:inputParameter name="$_OUTPUTS_Activity_14x7s22_67907b973ce0cb22916ea856" type="string">{"configs":{"RESPONSE_BODY":"RES_BODY"},"outputs":{"clinicalInsertPiResponse":{"activityId":"Activity_14x7s22_67907b973ce0cb22916ea856","property":"_$","parent":"RES_BODY#_$"}}}</camunda:inputParameter>
+        </camunda:inputOutput>
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_03hhxxc</bpmn:incoming>
+      <bpmn:outgoing>Flow_062zad7</bpmn:outgoing>
+    </bpmn:serviceTask>
+    <bpmn:sequenceFlow id="Flow_18lmfz0" sourceRef="Activity_1p1extv" targetRef="Activity_1z0jflv_67907b973ce0cb22916ea856" />
+    <bpmn:sequenceFlow id="Flow_0vjhvpm" sourceRef="Activity_1z0jflv_67907b973ce0cb22916ea856" targetRef="Activity_0kvob51" />
+    <bpmn:sequenceFlow id="Flow_03hhxxc" sourceRef="Activity_1p3vmxq" targetRef="Activity_14x7s22_67907b973ce0cb22916ea856" />
+    <bpmn:sequenceFlow id="Flow_062zad7" sourceRef="Activity_14x7s22_67907b973ce0cb22916ea856" targetRef="Activity_10ojq7t" />
+    <bpmn:serviceTask id="Activity_10pzwwg_67907b973ce0cb22916ea856" name="dbaas Ingest warning Audit" camunda:asyncBefore="true" camunda:asyncAfter="true" camunda:type="external" camunda:topic="ApiOperationHandler">
+      <bpmn:extensionElements>
+        <camunda:inputOutput>
+          <camunda:inputParameter name="$_INPUTS_Activity_10pzwwg_67907b973ce0cb22916ea856" type="string">{"interfacePath":"#POST INSTANCES","activityID":"Activity_10pzwwg_67907b973ce0cb22916ea856","config_status":true,"componentId":"67907b973ce0cb22916ea856","productMasterConfigId":"67907b973ce0cb22916ea855","componentName":"DBAAS_PI","handleError":false,"items":{"HTTP_METHOD":{"config_status":true,"type":"PROPERTY","value":"#HTTP-METHOD","sensitive":false,"items":null},"URL":{"config_status":true,"type":"GLOBALS","value":"#piInstancePostDataUrl","sensitive":false,"items":null},"QUERY_PARAM":{"config_status":false},"HTTP_HEADERS":{"config_status":true,"type":"GROUP","value":"#HTTP_HEADERS#children","sensitive":false,"items":{"Authorization":{"type":"GLOBALS","value":"Bearer eyJhbGciOiJSUzI1NiIsInR5cCIgOiAiSldUIiwia2lkIiA6ICI3Ny1NUVdFRTNHZE5adGlsWU5IYmpsa2dVSkpaWUJWVmN1UmFZdHl5ejFjIn0.eyJleHAiOjE3MjYxODIzMzEsImlhdCI6MTcyNjE0NjMzMSwianRpIjoiOGVlZTU1MDctNGVlOC00NjE1LTg3OWUtNTVkMjViMjQ2MGFmIiwiaXNzIjoiaHR0cDovL2tleWNsb2FrLmtleWNsb2FrLnN2Yy5jbHVzdGVyLmxvY2FsOjgwODAvcmVhbG1zL21hc3RlciIsImF1ZCI6ImFjY291bnQiLCJzdWIiOiJmNzFmMzU5My1hNjdhLTQwYmMtYTExYS05YTQ0NjY4YjQxMGQiLCJ0eXAiOiJCZWFyZXIiLCJhenAiOiJIT0xBQ1JBQ1kiLCJzZXNzaW9uX3N0YXRlIjoiYmI1ZjJkMzktYTQ3ZC00MjI0LWFjZGMtZTdmNzQwNDc2OTgwIiwibmFtZSI6ImtzYW14cCBrc2FteHAiLCJnaXZlbl9uYW1lIjoia3NhbXhwIiwiZmFtaWx5X25hbWUiOiJrc2FteHAiLCJwcmVmZXJyZWRfdXNlcm5hbWUiOiJwYXNzd29yZF90ZW5hbnRfa3NhbXhwQG1vYml1c2R0YWFzLmFpIiwiZW1haWwiOiJwYXNzd29yZF90ZW5hbnRfa3NhbXhwQG1vYml1c2R0YWFzLmFpIiwiZW1haWxfdmVyaWZpZWQiOnRydWUsImFjciI6IjEiLCJhbGxvd2VkLW9yaWdpbnMiOlsiLyoiXSwicmVhbG1fYWNjZXNzIjp7InJvbGVzIjpbImRlZmF1bHQtcm9sZXMtbWFzdGVyIiwib2ZmbGluZV9hY2Nlc3MiLCJ1bWFfYXV0aG9yaXphdGlvbiJdfSwicmVzb3VyY2VfYWNjZXNzIjp7IkhPTEFDUkFDWSI6eyJyb2xlcyI6WyJIT0xBQ1JBQ1lfVVNFUiJdfSwiYWNjb3VudCI6eyJyb2xlcyI6WyJtYW5hZ2UtYWNjb3VudCIsIm1hbmFnZS1hY2NvdW50LWxpbmtzIiwidmlldy1wcm9maWxlIl19fSwic2NvcGUiOiJwcm9maWxlIGVtYWlsIiwic2lkIjoiYmI1ZjJkMzktYTQ3ZC00MjI0LWFjZGMtZTdmNzQwNDc2OTgwIiwidGVuYW50SWQiOiJmNzFmMzU5My1hNjdhLTQwYmMtYTExYS05YTQ0NjY4YjQxMGQiLCJyZXF1ZXN0ZXJUeXBlIjoiVEVOQU5UIn0=.FXeDyHBhlG9L4_NCeSyHEaNEBVmhFpfSBqlcbhHaPaoydhKcA0BfuyHgxg_32kQk6z5S9IQ7nVKS2ybtOvwo0WyLWwLQchSq7Noa7LooHIMzmeWMQb_bLKtbaOti59zwIdS8CkfGaXut7RUQKISQVWmbUGsVJQa2JkG6Ng_QN0y5hFVksMWPZiXVsofQkJXHXV1CQ3gabhhHKo3BqlJwzpsCKLDfg1-4PmSl1Wqbw03Ef2yolroj5i8FoeHukOQPkwCUHrrNw-ilIp917nqZa89YbCMtDjWyaj8pEH7GJR5vMZPE2WcJPn5dSA1IHVunfatEB1cDAitaFjVNWNnddQ","label":"token","sensitive":false},"Content-Type":{"type":"PROPERTY","value":"#Content-Type","label":"Content-Type","sensitive":false}}},"HTTP_PAYLOAD":{"config_status":true,"type":"GROUP","value":"#REQ_BODY#children","sensitive":false,"items":{"_$":{"type":"GLOBALS","value":"","label":"EarlyWarningsAuditIngestPayload","sensitive":false}}},"PATH_PARAMETERS":{"config_status":true,"type":"GROUP","value":"#PATH_PARAMS#children","sensitive":false,"items":{"schemaId":{"type":"GLOBALS","value":"68a719ad4e7cc90774f5db15","label":"AuditLogEntrySchemaId","sensitive":false}}}}}</camunda:inputParameter>
+          <camunda:inputParameter name="$_OUTPUTS_Activity_10pzwwg_67907b973ce0cb22916ea856" type="string">{"configs":{"RESPONSE_BODY":"RES_BODY"},"outputs":{"earlywarningAuditPiresponse":{"activityId":"Activity_10pzwwg_67907b973ce0cb22916ea856","property":"_$","parent":"RES_BODY#_$"}}}</camunda:inputParameter>
+        </camunda:inputOutput>
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_1txcxch</bpmn:incoming>
+      <bpmn:outgoing>Flow_1bocvg2</bpmn:outgoing>
+    </bpmn:serviceTask>
+    <bpmn:serviceTask id="Activity_02een5k_67907b973ce0cb22916ea856" name="dbaas Ingest clinical audti" camunda:asyncBefore="true" camunda:asyncAfter="true" camunda:type="external" camunda:topic="ApiOperationHandler">
+      <bpmn:extensionElements>
+        <camunda:inputOutput>
+          <camunda:inputParameter name="$_INPUTS_Activity_02een5k_67907b973ce0cb22916ea856" type="string">{"interfacePath":"#POST INSTANCES","activityID":"Activity_02een5k_67907b973ce0cb22916ea856","config_status":true,"componentId":"67907b973ce0cb22916ea856","productMasterConfigId":"67907b973ce0cb22916ea855","componentName":"DBAAS_PI","handleError":false,"items":{"HTTP_METHOD":{"config_status":true,"type":"PROPERTY","value":"#HTTP-METHOD","sensitive":false,"items":null},"URL":{"config_status":true,"type":"GLOBALS","value":"#piInstancePostDataUrl","sensitive":false,"items":null},"QUERY_PARAM":{"config_status":false},"HTTP_HEADERS":{"config_status":true,"type":"GROUP","value":"#HTTP_HEADERS#children","sensitive":false,"items":{"Authorization":{"type":"GLOBALS","value":"Bearer eyJhbGciOiJSUzI1NiIsInR5cCIgOiAiSldUIiwia2lkIiA6ICI3Ny1NUVdFRTNHZE5adGlsWU5IYmpsa2dVSkpaWUJWVmN1UmFZdHl5ejFjIn0.eyJleHAiOjE3MjYxODIzMzEsImlhdCI6MTcyNjE0NjMzMSwianRpIjoiOGVlZTU1MDctNGVlOC00NjE1LTg3OWUtNTVkMjViMjQ2MGFmIiwiaXNzIjoiaHR0cDovL2tleWNsb2FrLmtleWNsb2FrLnN2Yy5jbHVzdGVyLmxvY2FsOjgwODAvcmVhbG1zL21hc3RlciIsImF1ZCI6ImFjY291bnQiLCJzdWIiOiJmNzFmMzU5My1hNjdhLTQwYmMtYTExYS05YTQ0NjY4YjQxMGQiLCJ0eXAiOiJCZWFyZXIiLCJhenAiOiJIT0xBQ1JBQ1kiLCJzZXNzaW9uX3N0YXRlIjoiYmI1ZjJkMzktYTQ3ZC00MjI0LWFjZGMtZTdmNzQwNDc2OTgwIiwibmFtZSI6ImtzYW14cCBrc2FteHAiLCJnaXZlbl9uYW1lIjoia3NhbXhwIiwiZmFtaWx5X25hbWUiOiJrc2FteHAiLCJwcmVmZXJyZWRfdXNlcm5hbWUiOiJwYXNzd29yZF90ZW5hbnRfa3NhbXhwQG1vYml1c2R0YWFzLmFpIiwiZW1haWwiOiJwYXNzd29yZF90ZW5hbnRfa3NhbXhwQG1vYml1c2R0YWFzLmFpIiwiZW1haWxfdmVyaWZpZWQiOnRydWUsImFjciI6IjEiLCJhbGxvd2VkLW9yaWdpbnMiOlsiLyoiXSwicmVhbG1fYWNjZXNzIjp7InJvbGVzIjpbImRlZmF1bHQtcm9sZXMtbWFzdGVyIiwib2ZmbGluZV9hY2Nlc3MiLCJ1bWFfYXV0aG9yaXphdGlvbiJdfSwicmVzb3VyY2VfYWNjZXNzIjp7IkhPTEFDUkFDWSI6eyJyb2xlcyI6WyJIT0xBQ1JBQ1lfVVNFUiJdfSwiYWNjb3VudCI6eyJyb2xlcyI6WyJtYW5hZ2UtYWNjb3VudCIsIm1hbmFnZS1hY2NvdW50LWxpbmtzIiwidmlldy1wcm9maWxlIl19fSwic2NvcGUiOiJwcm9maWxlIGVtYWlsIiwic2lkIjoiYmI1ZjJkMzktYTQ3ZC00MjI0LWFjZGMtZTdmNzQwNDc2OTgwIiwidGVuYW50SWQiOiJmNzFmMzU5My1hNjdhLTQwYmMtYTExYS05YTQ0NjY4YjQxMGQiLCJyZXF1ZXN0ZXJUeXBlIjoiVEVOQU5UIn0=.FXeDyHBhlG9L4_NCeSyHEaNEBVmhFpfSBqlcbhHaPaoydhKcA0BfuyHgxg_32kQk6z5S9IQ7nVKS2ybtOvwo0WyLWwLQchSq7Noa7LooHIMzmeWMQb_bLKtbaOti59zwIdS8CkfGaXut7RUQKISQVWmbUGsVJQa2JkG6Ng_QN0y5hFVksMWPZiXVsofQkJXHXV1CQ3gabhhHKo3BqlJwzpsCKLDfg1-4PmSl1Wqbw03Ef2yolroj5i8FoeHukOQPkwCUHrrNw-ilIp917nqZa89YbCMtDjWyaj8pEH7GJR5vMZPE2WcJPn5dSA1IHVunfatEB1cDAitaFjVNWNnddQ","label":"token","sensitive":false},"Content-Type":{"type":"PROPERTY","value":"#Content-Type","label":"Content-Type","sensitive":false}}},"HTTP_PAYLOAD":{"config_status":true,"type":"GROUP","value":"#REQ_BODY#children","sensitive":false,"items":{"_$":{"type":"GLOBALS","value":"","label":"ClinicalAuditIngestPayload","sensitive":false}}},"PATH_PARAMETERS":{"config_status":true,"type":"GROUP","value":"#PATH_PARAMS#children","sensitive":false,"items":{"schemaId":{"type":"GLOBALS","value":"68a719ad4e7cc90774f5db15","label":"AuditLogEntrySchemaId","sensitive":false}}}}}</camunda:inputParameter>
+          <camunda:inputParameter name="$_OUTPUTS_Activity_02een5k_67907b973ce0cb22916ea856" type="string">{"configs":{"RESPONSE_BODY":"RES_BODY"},"outputs":{"clinicalAuditIngestPiResponse":{"activityId":"Activity_02een5k_67907b973ce0cb22916ea856","property":"_$","parent":"RES_BODY#_$"}}}</camunda:inputParameter>
+        </camunda:inputOutput>
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_1de1rxo</bpmn:incoming>
+      <bpmn:outgoing>Flow_01pwz44</bpmn:outgoing>
+    </bpmn:serviceTask>
+    <bpmn:sequenceFlow id="Flow_1txcxch" sourceRef="Activity_0kvob51" targetRef="Activity_10pzwwg_67907b973ce0cb22916ea856" />
+    <bpmn:sequenceFlow id="Flow_1bocvg2" sourceRef="Activity_10pzwwg_67907b973ce0cb22916ea856" targetRef="Gateway_0clqacp" />
+    <bpmn:sequenceFlow id="Flow_1de1rxo" sourceRef="Activity_10ojq7t" targetRef="Activity_02een5k_67907b973ce0cb22916ea856" />
+    <bpmn:sequenceFlow id="Flow_01pwz44" sourceRef="Activity_02een5k_67907b973ce0cb22916ea856" targetRef="Gateway_0clqacp" />
+    <bpmn:scriptTask id="Activity_1cncxzi" name="Trigger staff Audit payload" camunda:asyncBefore="true" scriptFormat="Javascript">
+      <bpmn:incoming>Flow_0nrvipp</bpmn:incoming>
+      <bpmn:outgoing>Flow_1azqjuy</bpmn:outgoing>
+      <bpmn:script>
+var encounter_id = execution.getVariable("encounter_id");
+var patient_id = execution.getVariable("patient_id");
+
+// 1. Get current time
+var now = new Date();
+var epochSeconds = Math.floor(now.getTime() / 1000); // 10-digit number
+execution.setVariable("epochSeconds", epochSeconds); // stored as number
+
+var timestamp = epochSeconds.toString();
+
+
+
+var triggerStaffAssighnmentAuditPayload=S('{}');
+
+
+var uuid = java.util.UUID.randomUUID().toString();
+triggerStaffAssighnmentAuditPayload.prop("audit_id", uuid);
+
+triggerStaffAssighnmentAuditPayload.prop("actor","Trigger Staff Assigment Workflow");
+triggerStaffAssighnmentAuditPayload.prop("action","Trigger Staff Assignment workflow  which assign staff");
+triggerStaffAssighnmentAuditPayload.prop("details","Trigger Staff Assignment workflow has been triggered");
+triggerStaffAssighnmentAuditPayload.prop("timestamp",timestamp);
+
+
+
+
+execution.setVariable("triggerStaffAssignmentAuditPayload",triggerStaffAssighnmentAuditPayload);
+
+var data=S('[]');
+data.append(triggerStaffAssighnmentAuditPayload);
+var ingestPayload=S('{}');
+ingestPayload.prop("data",data);
+
+execution.setVariable("TriggerStaffAssignmentAuditIngestPayload",ingestPayload);</bpmn:script>
+    </bpmn:scriptTask>
+    <bpmn:sequenceFlow id="Flow_1azqjuy" sourceRef="Activity_1cncxzi" targetRef="Activity_0iob4xs_67907b973ce0cb22916ea856" />
+    <bpmn:serviceTask id="Activity_0iob4xs_67907b973ce0cb22916ea856" name="dbaas Ingest trigger staff audit" camunda:asyncBefore="true" camunda:asyncAfter="true" camunda:type="external" camunda:topic="ApiOperationHandler">
+      <bpmn:extensionElements>
+        <camunda:inputOutput>
+          <camunda:inputParameter name="$_INPUTS_Activity_0iob4xs_67907b973ce0cb22916ea856" type="string">{"interfacePath":"#POST INSTANCES","activityID":"Activity_0iob4xs_67907b973ce0cb22916ea856","config_status":true,"componentId":"67907b973ce0cb22916ea856","productMasterConfigId":"67907b973ce0cb22916ea855","componentName":"DBAAS_PI","handleError":false,"items":{"HTTP_METHOD":{"config_status":true,"type":"PROPERTY","value":"#HTTP-METHOD","sensitive":false,"items":null},"URL":{"config_status":true,"type":"GLOBALS","value":"#piInstancePostDataUrl","sensitive":false,"items":null},"QUERY_PARAM":{"config_status":false},"HTTP_HEADERS":{"config_status":true,"type":"GROUP","value":"#HTTP_HEADERS#children","sensitive":false,"items":{"Authorization":{"type":"GLOBALS","value":"Bearer eyJhbGciOiJSUzI1NiIsInR5cCIgOiAiSldUIiwia2lkIiA6ICI3Ny1NUVdFRTNHZE5adGlsWU5IYmpsa2dVSkpaWUJWVmN1UmFZdHl5ejFjIn0.eyJleHAiOjE3MjYxODIzMzEsImlhdCI6MTcyNjE0NjMzMSwianRpIjoiOGVlZTU1MDctNGVlOC00NjE1LTg3OWUtNTVkMjViMjQ2MGFmIiwiaXNzIjoiaHR0cDovL2tleWNsb2FrLmtleWNsb2FrLnN2Yy5jbHVzdGVyLmxvY2FsOjgwODAvcmVhbG1zL21hc3RlciIsImF1ZCI6ImFjY291bnQiLCJzdWIiOiJmNzFmMzU5My1hNjdhLTQwYmMtYTExYS05YTQ0NjY4YjQxMGQiLCJ0eXAiOiJCZWFyZXIiLCJhenAiOiJIT0xBQ1JBQ1kiLCJzZXNzaW9uX3N0YXRlIjoiYmI1ZjJkMzktYTQ3ZC00MjI0LWFjZGMtZTdmNzQwNDc2OTgwIiwibmFtZSI6ImtzYW14cCBrc2FteHAiLCJnaXZlbl9uYW1lIjoia3NhbXhwIiwiZmFtaWx5X25hbWUiOiJrc2FteHAiLCJwcmVmZXJyZWRfdXNlcm5hbWUiOiJwYXNzd29yZF90ZW5hbnRfa3NhbXhwQG1vYml1c2R0YWFzLmFpIiwiZW1haWwiOiJwYXNzd29yZF90ZW5hbnRfa3NhbXhwQG1vYml1c2R0YWFzLmFpIiwiZW1haWxfdmVyaWZpZWQiOnRydWUsImFjciI6IjEiLCJhbGxvd2VkLW9yaWdpbnMiOlsiLyoiXSwicmVhbG1fYWNjZXNzIjp7InJvbGVzIjpbImRlZmF1bHQtcm9sZXMtbWFzdGVyIiwib2ZmbGluZV9hY2Nlc3MiLCJ1bWFfYXV0aG9yaXphdGlvbiJdfSwicmVzb3VyY2VfYWNjZXNzIjp7IkhPTEFDUkFDWSI6eyJyb2xlcyI6WyJIT0xBQ1JBQ1lfVVNFUiJdfSwiYWNjb3VudCI6eyJyb2xlcyI6WyJtYW5hZ2UtYWNjb3VudCIsIm1hbmFnZS1hY2NvdW50LWxpbmtzIiwidmlldy1wcm9maWxlIl19fSwic2NvcGUiOiJwcm9maWxlIGVtYWlsIiwic2lkIjoiYmI1ZjJkMzktYTQ3ZC00MjI0LWFjZGMtZTdmNzQwNDc2OTgwIiwidGVuYW50SWQiOiJmNzFmMzU5My1hNjdhLTQwYmMtYTExYS05YTQ0NjY4YjQxMGQiLCJyZXF1ZXN0ZXJUeXBlIjoiVEVOQU5UIn0=.FXeDyHBhlG9L4_NCeSyHEaNEBVmhFpfSBqlcbhHaPaoydhKcA0BfuyHgxg_32kQk6z5S9IQ7nVKS2ybtOvwo0WyLWwLQchSq7Noa7LooHIMzmeWMQb_bLKtbaOti59zwIdS8CkfGaXut7RUQKISQVWmbUGsVJQa2JkG6Ng_QN0y5hFVksMWPZiXVsofQkJXHXV1CQ3gabhhHKo3BqlJwzpsCKLDfg1-4PmSl1Wqbw03Ef2yolroj5i8FoeHukOQPkwCUHrrNw-ilIp917nqZa89YbCMtDjWyaj8pEH7GJR5vMZPE2WcJPn5dSA1IHVunfatEB1cDAitaFjVNWNnddQ","label":"token","sensitive":false},"Content-Type":{"type":"PROPERTY","value":"#Content-Type","label":"Content-Type","sensitive":false}}},"HTTP_PAYLOAD":{"config_status":true,"type":"GROUP","value":"#REQ_BODY#children","sensitive":false,"items":{"_$":{"type":"GLOBALS","value":"","label":"TriggerStaffAssignmentAuditIngestPayload","sensitive":false}}},"PATH_PARAMETERS":{"config_status":true,"type":"GROUP","value":"#PATH_PARAMS#children","sensitive":false,"items":{"schemaId":{"type":"GLOBALS","value":"68a719ad4e7cc90774f5db15","label":"AuditLogEntrySchemaId","sensitive":false}}}}}</camunda:inputParameter>
+          <camunda:inputParameter name="$_OUTPUTS_Activity_0iob4xs_67907b973ce0cb22916ea856" type="string">{"configs":{"RESPONSE_BODY":"RES_BODY"},"outputs":{"triggerstaffassignmentAuditPiResponse":{"activityId":"Activity_0iob4xs_67907b973ce0cb22916ea856","property":"_$","parent":"RES_BODY#_$"}}}</camunda:inputParameter>
+        </camunda:inputOutput>
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_1azqjuy</bpmn:incoming>
+      <bpmn:outgoing>Flow_0zt8cpf</bpmn:outgoing>
+    </bpmn:serviceTask>
+    <bpmn:sequenceFlow id="Flow_0zt8cpf" sourceRef="Activity_0iob4xs_67907b973ce0cb22916ea856" targetRef="Gateway_0je1h7z" />
+    <bpmn:serviceTask id="Activity_1uuli1n_0198d146-96c5-7489-b5b7-1b4524a4e24c" name="Trigger f10 Staff Assignment Workflow" camunda:asyncBefore="true" camunda:asyncAfter="true" camunda:logo="" camunda:type="external" camunda:topic="ApiOperationHandler">
+      <bpmn:extensionElements>
+        <camunda:inputOutput>
+          <camunda:inputParameter name="$_INPUTS_Activity_1uuli1n_0198d146-96c5-7489-b5b7-1b4524a4e24c" type="string">{"interfacePath":"#TriggerWorkflow","interfaceType":"REST","activityID":"Activity_1uuli1n_0198d146-96c5-7489-b5b7-1b4524a4e24c","communicationType":"SYNC","config_status":true,"componentId":"0198d146-96c5-7489-b5b7-1b4524a4e24c","productMasterConfigId":"68a84339ae29200373b0a9bb","componentName":"Triggerf10d_workflow","handleError":false,"items":{"HTTP_METHOD":{"config_status":true,"type":"PROPERTY","value":"#HTTP_METHOD","sensitive":false,"items":null},"URL":{"config_status":true,"type":"PROPERTY","value":"#HTTP_URL","sensitive":false,"items":null},"QUERY_PARAM":{"config_status":true,"type":"GROUP","value":"#QUERY_PARAMS#children","sensitive":false,"items":{"env":{"type":"PROPERTY","value":"#env","label":"env","sensitive":false},"sync":{"type":"PROPERTY","value":"#sync","label":"sync","sensitive":false}}},"HTTP_HEADERS":{"config_status":true,"type":"GROUP","value":"#HTTP_HEADERS#children","sensitive":false,"items":{"Authorization":{"type":"PROPERTY","value":"#Authorization","label":"Authorization","sensitive":false},"Accept":{"type":"PROPERTY","value":"#Accept","label":"Accept","sensitive":false},"Content-Type":{"type":"PROPERTY","value":"#Content-Type","label":"Content-Type","sensitive":false}}},"HTTP_PAYLOAD":{"config_status":true,"type":"GROUP","value":"#REQUEST_BODY#children","sensitive":false,"items":{"key1":{"type":"STATIC","value":"","sensitive":false},"key2":{"type":"STATIC","value":"","sensitive":false},"key3":{"type":"STATIC","value":"","sensitive":false},"domain":{"type":"PROPERTY","value":"#domain","label":"domain","sensitive":false},"ownerId":{"type":"PROPERTY","value":"#ownerId","label":"ownerId","sensitive":false},"emailData":{"type":"PROPERTY","value":"#emailData","label":"emailData","sensitive":false}}},"PATH_PARAMETERS":{"config_status":true,"type":"GROUP","value":"#PATH_PARAMS#children","sensitive":false,"items":{"workflowId":{"type":"GLOBALS","value":"0198cb43-4b25-7f6a-9f6d-8dff9a0b531f","label":"staff_Assignment_wf_id","sensitive":false}}}}}</camunda:inputParameter>
+        </camunda:inputOutput>
+      </bpmn:extensionElements>
+      <bpmn:outgoing>Flow_1qj7bj3</bpmn:outgoing>
+    </bpmn:serviceTask>
+    <bpmn:parallelGateway id="Gateway_0clqacp">
+      <bpmn:incoming>Flow_1bocvg2</bpmn:incoming>
+      <bpmn:incoming>Flow_01pwz44</bpmn:incoming>
+      <bpmn:outgoing>Flow_1a5ln6t</bpmn:outgoing>
+    </bpmn:parallelGateway>
+    <bpmn:sequenceFlow id="Flow_1a5ln6t" sourceRef="Gateway_0clqacp" targetRef="Activity_0wzrcp3" />
+    <bpmn:scriptTask id="Activity_0wzrcp3" name="JS Script" camunda:asyncBefore="true" scriptFormat="Javascript">
+      <bpmn:incoming>Flow_1a5ln6t</bpmn:incoming>
+      <bpmn:outgoing>Flow_1p6zi6v</bpmn:outgoing>
+      <bpmn:script>
+
+var patient_id = execution.getVariable("patient_id");
+
+var patientidEncodedData = encodeURIComponent(patient_id);
+execution.setVariable("patientidEncodedDataTrigger",patientidEncodedData);</bpmn:script>
+    </bpmn:scriptTask>
+    <bpmn:serviceTask id="Activity_0jtmi0o_0198d146-96c5-7489-b5b7-1b4524a4e24c" name="Triggerf10d_workflow" camunda:asyncBefore="true" camunda:asyncAfter="true" camunda:logo="" camunda:type="external" camunda:topic="ApiOperationHandler">
+      <bpmn:extensionElements>
+        <camunda:inputOutput>
+          <camunda:inputParameter name="$_INPUTS_Activity_0jtmi0o_0198d146-96c5-7489-b5b7-1b4524a4e24c" type="string">{"interfacePath":"#TriggerWorkflow","interfaceType":"REST","activityID":"Activity_0jtmi0o_0198d146-96c5-7489-b5b7-1b4524a4e24c","communicationType":"SYNC","config_status":true,"componentId":"0198d146-96c5-7489-b5b7-1b4524a4e24c","productMasterConfigId":"68a84339ae29200373b0a9bb","componentName":"Triggerf10d_workflow","handleError":false,"items":{"HTTP_METHOD":{"config_status":true,"type":"PROPERTY","value":"#HTTP_METHOD","sensitive":false,"items":null},"URL":{"config_status":true,"type":"PROPERTY","value":"#HTTP_URL","sensitive":false,"items":null},"QUERY_PARAM":{"config_status":true,"type":"GROUP","value":"#QUERY_PARAMS#children","sensitive":false,"items":{"env":{"type":"PROPERTY","value":"#env","label":"env","sensitive":false},"sync":{"type":"PROPERTY","value":"#sync","label":"sync","sensitive":false}}},"HTTP_HEADERS":{"config_status":true,"type":"GROUP","value":"#HTTP_HEADERS#children","sensitive":false,"items":{"Authorization":{"type":"PROPERTY","value":"#Authorization","label":"Authorization","sensitive":false},"Accept":{"type":"PROPERTY","value":"#Accept","label":"Accept","sensitive":false},"Content-Type":{"type":"PROPERTY","value":"#Content-Type","label":"Content-Type","sensitive":false}}},"HTTP_PAYLOAD":{"config_status":true,"type":"GROUP","value":"#REQUEST_BODY#children","sensitive":false,"items":{"key1":{"type":"GLOBALS","value":"","label":"patientidEncodedDataTrigger","sensitive":false},"key2":{"type":"PROPERTY","value":"#key2","label":"key2","sensitive":false},"key3":{"type":"PROPERTY","value":"#key3","label":"key3","sensitive":false},"domain":{"type":"PROPERTY","value":"#domain","label":"domain","sensitive":false},"ownerId":{"type":"PROPERTY","value":"#ownerId","label":"ownerId","sensitive":false},"emailData":{"type":"PROPERTY","value":"#emailData","label":"emailData","sensitive":false}}},"PATH_PARAMETERS":{"config_status":true,"type":"GROUP","value":"#PATH_PARAMS#children","sensitive":false,"items":{"workflowId":{"type":"GLOBALS","value":"0198cb43-4b25-7f6a-9f6d-8dff9a0b531f","label":"staff_Assignment_wf_id","sensitive":false}}}}}</camunda:inputParameter>
+        </camunda:inputOutput>
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_1p6zi6v</bpmn:incoming>
+      <bpmn:incoming>Flow_1ocook9</bpmn:incoming>
+      <bpmn:outgoing>Flow_0nrvipp</bpmn:outgoing>
+    </bpmn:serviceTask>
+    <bpmn:sequenceFlow id="Flow_0nrvipp" sourceRef="Activity_0jtmi0o_0198d146-96c5-7489-b5b7-1b4524a4e24c" targetRef="Activity_1cncxzi" />
+    <bpmn:sequenceFlow id="Flow_1p6zi6v" sourceRef="Activity_0wzrcp3" targetRef="Activity_0jtmi0o_0198d146-96c5-7489-b5b7-1b4524a4e24c" />
+    <bpmn:sequenceFlow id="Flow_1ocook9" sourceRef="Gateway_09wostr" targetRef="Activity_0jtmi0o_0198d146-96c5-7489-b5b7-1b4524a4e24c" />
+    <bpmn:endEvent id="Event_1d3k0la">
+      <bpmn:incoming>Flow_1qj7bj3</bpmn:incoming>
+    </bpmn:endEvent>
+    <bpmn:sequenceFlow id="Flow_1qj7bj3" sourceRef="Activity_1uuli1n_0198d146-96c5-7489-b5b7-1b4524a4e24c" targetRef="Event_1d3k0la" />
+  </bpmn:process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_1">
+    <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="GaianWorkflows0198bc15-ca76-7535-960e-d1794934648a">
+      <bpmndi:BPMNShape id="_BPMNShape_StartEvent_2" bpmnElement="StartEvent_1" bioc:stroke="#75b1d2" color:border-color="#75b1d2">
+        <dc:Bounds x="-540" y="94" width="100" height="32" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_04c6753_di" bpmnElement="Activity_04c6753" bioc:stroke="#75b1d2" color:border-color="#75b1d2">
+        <dc:Bounds x="-360" y="94" width="100" height="32" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_1evcik3_di" bpmnElement="Activity_1evcik3_6754173406b4840ca120f353" bioc:stroke="#75b1d2" color:border-color="#75b1d2">
+        <dc:Bounds x="20" y="258" width="140" height="43" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_1dv4hlz_di" bpmnElement="Activity_1dv4hlz" bioc:stroke="#75b1d2" color:border-color="#75b1d2">
+        <dc:Bounds x="270" y="94" width="100" height="32" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_1p1extv_di" bpmnElement="Activity_1p1extv" bioc:stroke="#75b1d2" color:border-color="#75b1d2">
+        <dc:Bounds x="770" y="-526" width="100" height="57" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_02oi42o_di" bpmnElement="Activity_02oi42o_6754173406b4840ca120f353" bioc:stroke="#75b1d2" color:border-color="#75b1d2">
+        <dc:Bounds x="900" y="-182" width="140" height="43" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_1ahwfu3_di" bpmnElement="Activity_1ahwfu3_6754173406b4840ca120f353" bioc:stroke="#75b1d2" color:border-color="#75b1d2">
+        <dc:Bounds x="880" y="-80" width="140" height="40" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_1p3vmxq_di" bpmnElement="Activity_1p3vmxq" bioc:stroke="#75b1d2" color:border-color="#75b1d2">
+        <dc:Bounds x="810" y="-336" width="100" height="32" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_0huu19i_di" bpmnElement="Event_0huu19i">
+        <dc:Bounds x="2440" y="74" width="100" height="32" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_1d5ybk0_di" bpmnElement="Activity_1d5ybk0_66b137c8d5f1326e4179056e" bioc:stroke="#75b1d2" color:border-color="#75b1d2">
+        <dc:Bounds x="1540" y="-692" width="140" height="43" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Gateway_09wostr_di" bpmnElement="Gateway_09wostr" isMarkerVisible="true" bioc:stroke="#75b1d2" color:border-color="#75b1d2">
+        <dc:Bounds x="-215" y="85" width="50" height="50" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0vks5ge_di" bpmnElement="Activity_0vks5ge" bioc:stroke="#75b1d2" color:border-color="#75b1d2">
+        <dc:Bounds x="-130" y="94" width="100" height="32" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0fai8ot_di" bpmnElement="Activity_0fai8ot_01989d25-ef73-793a-9c35-84e01893737b" bioc:stroke="#75b1d2" color:border-color="#75b1d2">
+        <dc:Bounds x="450" y="92" width="140" height="40" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_10ojq7t_di" bpmnElement="Activity_10ojq7t" bioc:stroke="#75b1d2" color:border-color="#75b1d2">
+        <dc:Bounds x="1270" y="-336" width="100" height="32" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0qd1tgj_di" bpmnElement="Activity_0qd1tgj_6754173406b4840ca120f353" bioc:stroke="#75b1d2" color:border-color="#75b1d2">
+        <dc:Bounds x="1170" y="-140" width="140" height="40" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0kvob51_di" bpmnElement="Activity_0kvob51" bioc:stroke="#75b1d2" color:border-color="#75b1d2">
+        <dc:Bounds x="1250" y="-513" width="100" height="32" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0goc4l2_di" bpmnElement="Activity_0goc4l2_6754173406b4840ca120f353" bioc:stroke="#75b1d2" color:border-color="#75b1d2">
+        <dc:Bounds x="1180" y="-240" width="140" height="40" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Gateway_1s3oy6r_di" bpmnElement="Gateway_1s3oy6r" bioc:stroke="#75b1d2" color:border-color="#75b1d2">
+        <dc:Bounds x="665" y="87" width="50" height="50" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Gateway_0je1h7z_di" bpmnElement="Gateway_0je1h7z" bioc:stroke="#75b1d2" color:border-color="#75b1d2">
+        <dc:Bounds x="1925" y="65" width="50" height="50" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_118p3bh_di" bpmnElement="Activity_118p3bh_67907b973ce0cb22916ea856" bioc:stroke="#75b1d2" color:border-color="#75b1d2">
+        <dc:Bounds x="30" y="90" width="140" height="40" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_1z0jflv_di" bpmnElement="Activity_1z0jflv_67907b973ce0cb22916ea856" bioc:stroke="#75b1d2" color:border-color="#75b1d2">
+        <dc:Bounds x="970" y="-519" width="140" height="43" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_14x7s22_di" bpmnElement="Activity_14x7s22_67907b973ce0cb22916ea856" bioc:stroke="#75b1d2" color:border-color="#75b1d2">
+        <dc:Bounds x="1010" y="-336" width="140" height="43" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_10pzwwg_di" bpmnElement="Activity_10pzwwg_67907b973ce0cb22916ea856" bioc:stroke="#75b1d2" color:border-color="#75b1d2">
+        <dc:Bounds x="1450" y="-519" width="140" height="43" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_02een5k_di" bpmnElement="Activity_02een5k_67907b973ce0cb22916ea856" bioc:stroke="#75b1d2" color:border-color="#75b1d2">
+        <dc:Bounds x="1450" y="-342" width="140" height="43" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_1cncxzi_di" bpmnElement="Activity_1cncxzi" bioc:stroke="#75b1d2" color:border-color="#75b1d2">
+        <dc:Bounds x="1900" y="-342" width="100" height="32" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0iob4xs_di" bpmnElement="Activity_0iob4xs_67907b973ce0cb22916ea856" bioc:stroke="#75b1d2" color:border-color="#75b1d2">
+        <dc:Bounds x="1880" y="-196" width="140" height="40" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Gateway_0clqacp_di" bpmnElement="Gateway_0clqacp" bioc:stroke="#75b1d2" color:border-color="#75b1d2">
+        <dc:Bounds x="1765" y="-415" width="50" height="50" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0wzrcp3_di" bpmnElement="Activity_0wzrcp3" bioc:stroke="#75b1d2" color:border-color="#75b1d2">
+        <dc:Bounds x="1810" y="-466" width="100" height="32" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0jtmi0o_di" bpmnElement="Activity_0jtmi0o_0198d146-96c5-7489-b5b7-1b4524a4e24c" bioc:stroke="#75b1d2" color:border-color="#75b1d2">
+        <dc:Bounds x="1840" y="-653" width="140" height="43" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_1uuli1n_di" bpmnElement="Activity_1uuli1n_0198d146-96c5-7489-b5b7-1b4524a4e24c" bioc:stroke="#75b1d2" color:border-color="#75b1d2">
+        <dc:Bounds x="-265" y="268" width="140" height="43" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_1d3k0la_di" bpmnElement="Event_1d3k0la">
+        <dc:Bounds x="-68" y="272" width="100" height="32" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="Flow_18ub0se_di" bpmnElement="Flow_18ub0se">
+        <di:waypoint x="-440" y="110" />
+        <di:waypoint x="-360" y="110" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0d99c6h_di" bpmnElement="Flow_0d99c6h">
+        <di:waypoint x="-260" y="110" />
+        <di:waypoint x="-215" y="110" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0qgmbl0_di" bpmnElement="Flow_0qgmbl0" bioc:stroke="#75b1d2" color:border-color="#75b1d2">
+        <di:waypoint x="-165" y="110" />
+        <di:waypoint x="-130" y="110" />
+        <bpmndi:BPMNLabel color:color="#75b1d2">
+          <dc:Bounds x="-155" y="92" width="15" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_088189v_di" bpmnElement="Flow_088189v" bioc:stroke="#75b1d2" color:border-color="#75b1d2">
+        <di:waypoint x="370" y="120" />
+        <di:waypoint x="450" y="120" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0un58pa_di" bpmnElement="Flow_0un58pa">
+        <di:waypoint x="590" y="112" />
+        <di:waypoint x="665" y="112" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0vxt5nz_di" bpmnElement="Flow_0vxt5nz">
+        <di:waypoint x="690" y="87" />
+        <di:waypoint x="690" y="-310" />
+        <di:waypoint x="810" y="-310" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0hi8d82_di" bpmnElement="Flow_0hi8d82">
+        <di:waypoint x="690" y="87" />
+        <di:waypoint x="690" y="-497" />
+        <di:waypoint x="770" y="-497" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1b0c3js_di" bpmnElement="Flow_1b0c3js">
+        <di:waypoint x="1975" y="90" />
+        <di:waypoint x="2440" y="90" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_023zjcz_di" bpmnElement="Flow_023zjcz">
+        <di:waypoint x="-30" y="116" />
+        <di:waypoint x="30" y="116" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1xwtef5_di" bpmnElement="Flow_1xwtef5" bioc:stroke="#75b1d2" color:border-color="#75b1d2">
+        <di:waypoint x="170" y="110" />
+        <di:waypoint x="270" y="110" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_18lmfz0_di" bpmnElement="Flow_18lmfz0">
+        <di:waypoint x="870" y="-497" />
+        <di:waypoint x="970" y="-497" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0vjhvpm_di" bpmnElement="Flow_0vjhvpm">
+        <di:waypoint x="1110" y="-500" />
+        <di:waypoint x="1250" y="-500" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_03hhxxc_di" bpmnElement="Flow_03hhxxc">
+        <di:waypoint x="910" y="-314" />
+        <di:waypoint x="1010" y="-314" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_062zad7_di" bpmnElement="Flow_062zad7">
+        <di:waypoint x="1150" y="-320" />
+        <di:waypoint x="1270" y="-320" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1txcxch_di" bpmnElement="Flow_1txcxch">
+        <di:waypoint x="1350" y="-500" />
+        <di:waypoint x="1450" y="-500" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1bocvg2_di" bpmnElement="Flow_1bocvg2" bioc:stroke="#75b1d2" color:border-color="#75b1d2">
+        <di:waypoint x="1590" y="-497" />
+        <di:waypoint x="1790" y="-497" />
+        <di:waypoint x="1790" y="-420" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1de1rxo_di" bpmnElement="Flow_1de1rxo">
+        <di:waypoint x="1370" y="-320" />
+        <di:waypoint x="1450" y="-320" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_01pwz44_di" bpmnElement="Flow_01pwz44">
+        <di:waypoint x="1520" y="-342" />
+        <di:waypoint x="1520" y="-390" />
+        <di:waypoint x="1765" y="-390" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1azqjuy_di" bpmnElement="Flow_1azqjuy" bioc:stroke="#75b1d2" color:border-color="#75b1d2">
+        <di:waypoint x="1950" y="-310" />
+        <di:waypoint x="1950" y="-196" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0zt8cpf_di" bpmnElement="Flow_0zt8cpf" bioc:stroke="#75b1d2" color:border-color="#75b1d2">
+        <di:waypoint x="1950" y="-156" />
+        <di:waypoint x="1950" y="65" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1a5ln6t_di" bpmnElement="Flow_1a5ln6t">
+        <di:waypoint x="1815" y="-390" />
+        <di:waypoint x="1860" y="-390" />
+        <di:waypoint x="1860" y="-434" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0nrvipp_di" bpmnElement="Flow_0nrvipp" bioc:stroke="#75b1d2" color:border-color="#75b1d2">
+        <di:waypoint x="1980" y="-633" />
+        <di:waypoint x="2090" y="-633" />
+        <di:waypoint x="2090" y="-320" />
+        <di:waypoint x="2000" y="-320" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1p6zi6v_di" bpmnElement="Flow_1p6zi6v">
+        <di:waypoint x="1856" y="-466" />
+        <di:waypoint x="1810" y="-630" />
+        <di:waypoint x="1840" y="-630" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1ocook9_di" bpmnElement="Flow_1ocook9" bioc:stroke="#75b1d2" color:border-color="#75b1d2">
+        <di:waypoint x="-190" y="85" />
+        <di:waypoint x="-190" y="-643" />
+        <di:waypoint x="1840" y="-643" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1qj7bj3_di" bpmnElement="Flow_1qj7bj3">
+        <di:waypoint x="-125" y="290" />
+        <di:waypoint x="-100" y="290" />
+        <di:waypoint x="-100" y="288" />
+        <di:waypoint x="-68" y="288" />
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</bpmn:definitions>
